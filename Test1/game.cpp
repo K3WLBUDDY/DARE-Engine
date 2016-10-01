@@ -121,6 +121,7 @@ void game::initShaders()
 	_colorProgram.linkShaders();
 
 	CEGUI::OpenGL3Renderer& myRenderer = CEGUI::OpenGL3Renderer::bootstrapSystem();
+	
 }
 
 
