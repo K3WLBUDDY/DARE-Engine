@@ -1,0 +1,47 @@
+//The GLSL Vertex Shader
+
+#version 130 //Tells the GPU the version of GLSL to be targeted
+
+in vec2 vertexPosition; // Gets the input for the Positions of the vertices
+in vec4 vertexColor; //Gets the input for the Color of the Vertex
+in vec2 vertexUV;
+
+out vec2 fragmentPosition;
+out vec4 fragmentColor;
+out vec2 fragmentUV;
+
+/* The Variables used here are called the Vertex Attributes.
+   These attributes must be bound to the OpenGL Program.*/
+
+void main() //By default main returns void.
+{
+    gl_Position.xy = vertexPosition;
+    
+    /* Above line is the same as 
+
+       gl_Position.x=vertexPosition;
+       gl_Position.y=vertexPosition;
+
+       The above Syntax is referred to as swiggle masks
+
+       gl_Position is a keyword in GLSL reserved for the position of the Vertex
+       gl_position has 4 coordinates. It is a vec4. Therefore when dealing with 2D,
+       set the Z coordinate to 0
+
+
+    */
+    gl_Position.z=0.0;
+    gl_Position.w=1.0;
+
+    /*
+       gl_Position.w is the fourth coordinate called the Homogeneous Vertex Coordiante.
+       It represents a factor with which to divide the other 3 coordinates.
+       A value of 1 to W means that the coordinates are normalized.
+       W should be 1 when comparing two vertices.
+    */
+
+    fragmentPosition=vertexPosition;
+    fragmentColor=vertexColor;
+
+    fragmentUV=vec2(vertexUV.x, 1.0-vertexUV.y);
+}
