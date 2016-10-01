@@ -9,6 +9,9 @@ A simple Windows Application that allows the client's GPU to upload textures and
 * CEGUI
   - Rudimentary Graphical User Interface
   
+# Current State of the Project
+  While the Shaders and Textures work, the GUI and the Release version of the project are yet to be implemented
+  
 # Notes
 * Currently the project supports only x64 Operating Systems. An x86 compatible build is in the works and will be uploaded soon
   
