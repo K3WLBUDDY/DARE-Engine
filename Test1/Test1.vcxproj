@@ -131,6 +131,7 @@
     <ClCompile Include="errors.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="errors.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GLSLProgram.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="OpenGLTexture.h" />

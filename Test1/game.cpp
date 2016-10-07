@@ -5,8 +5,8 @@
 #include"errors.h"
 #include"ImageLoader.h"
 #include"OpenGLTexture.h"
-#include<CEGUI\CEGUI.h>
-#include<CEGUI\RendererModules\OpenGL\GL3Renderer.h>
+#include<GLM\glm.hpp>
+
 
 
 using namespace std;
@@ -25,7 +25,7 @@ void game::run()
 {
 	initsystems();
 
-	_sprite.init(-1.0f,-1.0f,2.0f,2.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
+	_sprite.init(-1.0f,-1.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
 
 	_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
 
@@ -84,6 +84,11 @@ void game::initsystems()
 
 	initShaders();
 
+	m_gui.init("GUI");
+	m_gui.loadScheme("TaharezLook.scheme");
+	m_gui.setFont("DejaVuSans-10");
+	m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
+
 	
 }
 
@@ -105,10 +110,17 @@ void game::drawGame()
 	glUniform1f(timeLocation, time); //Sends the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
 
 
+	
 	_sprite.draw();
+	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
+	//glActiveTexture(GL_TEXTURE_0);
+	m_gui.draw();
+
+	
 	SDL_GL_SwapWindow(_window);//Swaps between the two buffers in the DoubleBuffer window
+	
 }
 
 void game::initShaders()
@@ -120,7 +132,7 @@ void game::initShaders()
 	_colorProgram.addAttribute("vertexUV");
 	_colorProgram.linkShaders();
 
-	CEGUI::OpenGL3Renderer& myRenderer = CEGUI::OpenGL3Renderer::bootstrapSystem();
+
 	
 }
 

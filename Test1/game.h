@@ -7,6 +7,8 @@
 #include"GLSLProgram.h" //Includes the Shader Class
 #include"OpenGLTexture.h"
 
+#include"GUI.h"
+
 
 
 
@@ -32,5 +34,6 @@ private:
 
 	GLSLProgram _colorProgram;
 	OpenGLTexture _playerTexture; //Initialises a texture with the attributes defined in OpenGLTexture.h
+	GUI m_gui;
 };
 
