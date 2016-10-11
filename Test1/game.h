@@ -8,6 +8,7 @@
 #include"OpenGLTexture.h"
 
 #include"GUI.h"
+#include<Windows.h>
 
 
 
@@ -29,6 +30,7 @@ private:
 	SDL_Window* _window;
 	sprite _sprite;
 	int width, height;
+	void getResolution();
 
 	float time;
 

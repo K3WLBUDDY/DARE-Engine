@@ -14,8 +14,6 @@ using namespace std;
 
 game::game() : _window(nullptr),
 				games(gamestate::PLAY),
-				width(1024),
-				height(768),
 				time(0.0f)
 {
 
@@ -23,6 +21,7 @@ game::game() : _window(nullptr),
 
 void game::run()
 {
+	getResolution();
 	initsystems();
 
 	_sprite.init(-1.0f,-1.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
@@ -84,11 +83,13 @@ void game::initsystems()
 
 	initShaders();
 
+	//Initializing the GUI related stuff
 	m_gui.init("GUI");
 	m_gui.loadScheme("TaharezLook.scheme");
 	m_gui.setFont("DejaVuSans-10");
-	m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
-
+	//m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
+	CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),glm::vec4(0.0f),"TestButton"));
+	testButton->setText("Hello World");
 	
 }
 
@@ -116,6 +117,8 @@ void game::drawGame()
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
 	//glActiveTexture(GL_TEXTURE_0);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	m_gui.draw();
 
 	
@@ -134,6 +137,12 @@ void game::initShaders()
 
 
 	
+}
+
+void game::getResolution()
+{
+	width = GetSystemMetrics(SM_CXSCREEN);
+	height = GetSystemMetrics(SM_CYSCREEN);
 }
 
 

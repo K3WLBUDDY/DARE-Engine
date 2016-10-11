@@ -45,7 +45,7 @@ void GUI::draw()
 	m_context->draw();
 
 	m_renderer->endRendering();
-	cout << "\n Drawn Successfully!";
+	//cout << "\n Drawn Successfully!";
 	glDisable(GL_SCISSOR_TEST);
 	
 	
