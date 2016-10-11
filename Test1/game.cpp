@@ -24,9 +24,11 @@ void game::run()
 	getResolution();
 	initsystems();
 
-	_sprite.init(-1.0f,-1.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
+	_sprite.init(-0.5f,0.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
+	
 
-	_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
+	_playerTexture = ImageLoader::loadPNG("Textures/changeTexture.png"); // Loads the PNG file into picopng for decoding into raw pixel data
+	//_ChangeTexture = ImageLoader::loadPNG("changeTexture.png");
 
 	while (games != gamestate::STOP)
 	{
@@ -78,18 +80,19 @@ void game::initsystems()
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
 
 	
-	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);//Sets the Color of the OpenGL context to the specified values.
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//Sets the Color of the OpenGL context to the specified values. In this case the color is black.
 
 
 	initShaders();
 
-	//Initializing the GUI related stuff
+	/*//Initializing the GUI related stuff
 	m_gui.init("GUI");
 	m_gui.loadScheme("TaharezLook.scheme");
 	m_gui.setFont("DejaVuSans-10");
 	//m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
 	CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),glm::vec4(0.0f),"TestButton"));
 	testButton->setText("Hello World");
+	*/
 	
 }
 
@@ -116,13 +119,16 @@ void game::drawGame()
 	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
-	//glActiveTexture(GL_TEXTURE_0);
+	/*glActiveTexture(GL_TEXTURE_0);
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	m_gui.draw();
 
+	*/
+
 	
 	SDL_GL_SwapWindow(_window);//Swaps between the two buffers in the DoubleBuffer window
+	
 	
 }
 
