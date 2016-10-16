@@ -1,7 +1,7 @@
 #pragma once
 #include<string>
 #include<vector>
-
+//This is a static class. No constructor or destructor needed.
 class IOManager
 {
 public:
