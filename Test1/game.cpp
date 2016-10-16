@@ -6,6 +6,7 @@
 #include"ImageLoader.h"
 #include"OpenGLTexture.h"
 #include<GLM\glm.hpp>
+#include"GUI.h"
 
 
 
@@ -24,10 +25,10 @@ void game::run()
 	getResolution();
 	initsystems();
 
-	_sprite.init(-0.5f,0.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
+	_sprite.init(-1.0f,-1.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
 	
 
-	_playerTexture = ImageLoader::loadPNG("Textures/changeTexture.png"); // Loads the PNG file into picopng for decoding into raw pixel data
+	_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
 	//_ChangeTexture = ImageLoader::loadPNG("changeTexture.png");
 
 	while (games != gamestate::STOP)
@@ -85,14 +86,14 @@ void game::initsystems()
 
 	initShaders();
 
-	/*//Initializing the GUI related stuff
+	//Initializing the GUI related stuff
 	m_gui.init("GUI");
 	m_gui.loadScheme("TaharezLook.scheme");
 	m_gui.setFont("DejaVuSans-10");
 	//m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
 	CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),glm::vec4(0.0f),"TestButton"));
 	testButton->setText("Hello World");
-	*/
+	
 	
 }
 
