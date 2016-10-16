@@ -12,9 +12,9 @@ bool IOManager::readFileToBuffer(std::vector<unsigned char>& buffer, std::string
 	}
 
 	/* -----------------------------------------------------------------------------------------
-	   |Were you wondering when to use seekg and tellg in your 12th grade? Here you go lol..   |
-	   |																					   |  
-	   |The below code modifies the size of the buffer to the correct size of the Texture file.|
+	    Were you wondering when to use seekg and tellg in your 12th grade? Here you go lol..   
+	   																					   
+	    The below code modifies the size of the buffer to the correct size of the Texture file.
 	   -----------------------------------------------------------------------------------------
 	*/
 	file.seekg(0, std::ios::end);//Seeks to the end. First parameter is the byte offset. Here it is 0 bytes offset from the end
