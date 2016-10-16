@@ -87,6 +87,8 @@ void game::initsystems()
 	initShaders();
 
 	//Initializing the GUI related stuff
+
+	//The GUI Stuff doesn't work yet. Mostly issues with the sprite system due to the lack of a proper sprite batch.
 	m_gui.init("GUI");
 	m_gui.loadScheme("TaharezLook.scheme");
 	m_gui.setFont("DejaVuSans-10");
@@ -120,12 +122,12 @@ void game::drawGame()
 	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
-	/*glActiveTexture(GL_TEXTURE_0);
+	//glActiveTexture(GL_TEXTURE_0);
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	m_gui.draw();
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//m_gui.draw();
 
-	*/
+	
 
 	
 	SDL_GL_SwapWindow(_window);//Swaps between the two buffers in the DoubleBuffer window
