@@ -3,7 +3,7 @@
 #include<iostream>
 #include<string>
 #include"errors.h"
-#include"ImageLoader.h"
+//#include"ImageLoader.h"
 #include"OpenGLTexture.h"
 #include<GLM\glm.hpp>
 #include"GUI.h"
@@ -24,11 +24,17 @@ void game::run()
 {
 	getResolution();
 	initsystems();
-
-	_sprite.init(-1.0f,-1.0f,1.0f,1.0f);//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
+	_sprites.push_back(new sprite());
+	_sprites.back()->init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
+	//for (int i = 0; i < 1000; i++)
+	//{
+		_sprites.push_back(new sprite());
+		_sprites.back()->init(0.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
+	//}
+	//_sprite.init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
 	
 
-	_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
+	//_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
 	//_ChangeTexture = ImageLoader::loadPNG("changeTexture.png");
 
 	while (games != gamestate::STOP)
@@ -51,7 +57,7 @@ void game::process_input() //This funtion must whenever the frame is updated.
 			games = gamestate::STOP;
 			break;
 		case SDL_MOUSEMOTION: //Refers to the movement of the mouse
-			cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
+			//cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
 			break;
 		}
 	}
@@ -109,7 +115,7 @@ void game::drawGame()
 	_colorProgram.use();
 	
 	glActiveTexture(GL_TEXTURE0); //Selects the Texture unit that will be affected
-	glBindTexture(GL_TEXTURE_2D, _playerTexture.ID); //Binds the Texture
+	//glBindTexture(GL_TEXTURE_2D, _playerTexture.ID); //Binds the Texture
 
 	GLint textureLocation = _colorProgram.getUniformLocation("mySampler"); //Gets the location of the Texture Variable present in the Shader
 	glUniform1i(textureLocation,0);
@@ -118,7 +124,12 @@ void game::drawGame()
 
 
 	
-	_sprite.draw();
+	//_sprite.draw();
+	for (int i = 0; i < _sprites.size(); i++)
+	{
+		_sprites[i]->draw();
+	//	_sprites.back()->init(-1.0f, 0.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
+	}
 	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();

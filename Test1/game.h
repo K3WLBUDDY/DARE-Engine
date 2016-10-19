@@ -9,6 +9,7 @@
 
 #include"GUI.h"
 #include<Windows.h>
+#include<vector>
 
 
 
@@ -35,8 +36,9 @@ private:
 	float time;
 
 	GLSLProgram _colorProgram;
-	OpenGLTexture _playerTexture; //Initialises a texture with the attributes defined in OpenGLTexture.h
+	//OpenGLTexture _playerTexture; //Initialises a texture with the attributes defined in OpenGLTexture.h
 	OpenGLTexture _ChangeTexture;
 	GUI m_gui;
+	std::vector<sprite*> _sprites;
 };
 

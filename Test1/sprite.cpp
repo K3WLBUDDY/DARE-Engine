@@ -11,12 +11,14 @@ sprite::sprite()
 }
 
 
-void sprite::init(float x, float y, float width, float height)
+void sprite::init(float x, float y, float width, float height,std::string texPath)
 {
 	_x = x;
 	_y = y;
 	_width = width;
 	_height = height;
+
+	_texture = ResourceManager::getTexture(texPath);
 
 	if (_vboID == 0)
 	{
@@ -63,6 +65,8 @@ void sprite::init(float x, float y, float width, float height)
 
 void sprite::draw()
 {
+
+	glBindTexture(GL_TEXTURE_2D, _texture.ID);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 
 	glEnableVertexAttribArray(0);//Enables the Vertex Attributes
