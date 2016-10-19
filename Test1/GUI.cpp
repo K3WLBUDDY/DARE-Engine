@@ -4,7 +4,7 @@
 using namespace std;
 
 
-CEGUI::OpenGL3Renderer* GUI::m_renderer = nullptr;;
+CEGUI::OpenGL3Renderer* GUI::m_renderer = nullptr;; //Initializes a OpenGL Renderer
 
 void GUI::init(const std::string& resourceDir)
 {
@@ -12,9 +12,11 @@ void GUI::init(const std::string& resourceDir)
 	if (m_renderer == nullptr)
 	{
 		
-		m_renderer = &CEGUI::OpenGL3Renderer::bootstrapSystem();
+		m_renderer = &CEGUI::OpenGL3Renderer::bootstrapSystem();//Helper function to get CEGUI up and running
 
-		CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
+		CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());//Creates a Resource Provider Object.
+
+		//Sets all the various Directories to the rp
 		rp->setResourceGroupDirectory("imagesets", resourceDir + "/imagesets/");
 		rp->setResourceGroupDirectory("schemes", resourceDir + "/schemes/");
 		rp->setResourceGroupDirectory("fonts", resourceDir + "/fonts/");
@@ -22,6 +24,7 @@ void GUI::init(const std::string& resourceDir)
 		rp->setResourceGroupDirectory("looknfeels", resourceDir + "/looknfeel/");
 		rp->setResourceGroupDirectory("lua_scripts", resourceDir + "/lua_scripts/");
 
+		//Sets the Default Parameters.
 		CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
 		CEGUI::Scheme::setDefaultResourceGroup("schemes");
 		CEGUI::Font::setDefaultResourceGroup("fonts");
@@ -30,6 +33,13 @@ void GUI::init(const std::string& resourceDir)
 		CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
 
 	}
+
+	/*
+	    ---------------------------------------------------------------------------------------------------------------------
+		A singleton restricts a class to only one instance. This can be done by declaring all the constructors in Private and
+		providing a static method that returns a reference to the single instance
+		---------------------------------------------------------------------------------------------------------------------
+	*/
 
 	m_context = &CEGUI::System::getSingleton().createGUIContext(m_renderer->getDefaultRenderTarget());
 	m_root = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "root");
@@ -56,6 +66,7 @@ void GUI::loadScheme(const std::string& schemeFile)
 	CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
 }
 
+//Complicated GLM Stuff that I have no clue of. :/
 CEGUI::Window* GUI::createWidget(const std::string& type, const glm::vec4& destRectPerc, const glm::vec4& destRectPix, const std::string& name)
 {
 	CEGUI::Window* newWindow = CEGUI::WindowManager::getSingleton().createWindow(type, name);
