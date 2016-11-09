@@ -95,12 +95,12 @@ void game::initsystems()
 	//Initializing the GUI related stuff
 
 	//The GUI Stuff doesn't work yet. Mostly issues with the sprite system due to the lack of a proper sprite batch.
-	m_gui.init("GUI");
-	m_gui.loadScheme("TaharezLook.scheme");
-	m_gui.setFont("DejaVuSans-10");
+	//m_gui.init("GUI");
+	//m_gui.loadScheme("TaharezLook.scheme");
+	//m_gui.setFont("DejaVuSans-10");
 	//m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
-	CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),glm::vec4(0.0f),"TestButton"));
-	testButton->setText("Hello World");
+	//CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),glm::vec4(0.0f),"TestButton"));
+	//testButton->setText("Hello World");
 	
 	
 }

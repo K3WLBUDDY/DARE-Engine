@@ -72,8 +72,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>H:\VC++_Dell_Copy\VC++\deps\include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\VC++_Dell_Copy\VC++\deps\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\VC++_Dell_Copy\VC++\deps\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
