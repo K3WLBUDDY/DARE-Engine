@@ -1,0 +1,30 @@
+/* Documetation for the OpenGL Shader Program v0.1 written by Sruthik P.
+   This program aims to display a 2D texture by loading it onto a sprite.
+   The texture can be changed by the user via a GUI which will be implemented via Qt.
+   */
+
+
+CHANGELOG:
+
+	-> Removed CEGUI and migrated to Qt.
+	-> Added FPS Counter
+
+
+PROJECT FILES:
+
+	-> main.cpp - The entry point for the program.
+	-> game.cpp - Contains the main game loop and initializtions for shaders and sprites.
+	-> sprite.cpp - Contains the draw function for the sprite.
+	-> GLSLProgram.cpp - Contains the Shader Compilation and Linking functions.
+	-> ImageLoader.cpp - Contains the logic for uploading texture and Texture mapping
+	-> IOManager.cpp - Contains a simple file parser
+	-> Picopng.cpp - Code for decoding PNG images into memory
+	-> ResourceManager.cpp - Used for Texture Caching.
+        -> TextureCache.cpp - Texture Cache
+	-> GUI.cpp - CEGUI Logic *not used anymore*
+	-> errors.cpp - Global Error Handler
+
+PROGRAM FLOW:
+
+	The program starts with the main loop by initializing an object for the game class. Since SDL is being used the main loop's
+	function parameters must be of the form "int main(int argc, char** argv)".fa
