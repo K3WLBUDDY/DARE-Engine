@@ -7,7 +7,7 @@
 #include"GLSLProgram.h" //Includes the Shader Class
 #include"OpenGLTexture.h"
 
-#include"GUI.h"
+//#include"GUI.h"
 #include<Windows.h>
 #include<vector>
 
@@ -32,13 +32,15 @@ private:
 	sprite _sprite;
 	int width, height;
 	void getResolution();
-
+	void fpsCounter();
 	float time;
 
 	GLSLProgram _colorProgram;
 	//OpenGLTexture _playerTexture; //Initialises a texture with the attributes defined in OpenGLTexture.h
 	OpenGLTexture _ChangeTexture;
-	GUI m_gui;
+	//GUI m_gui;
 	std::vector<sprite*> _sprites;
+
+	float _fps, _frameTime;
 };
 

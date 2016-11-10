@@ -5,8 +5,8 @@
 #include"errors.h"
 //#include"ImageLoader.h"
 #include"OpenGLTexture.h"
-#include<GLM\glm.hpp>
-#include"GUI.h"
+//#include<GLM\glm.hpp>
+//#include"GUI.h"
 
 
 
@@ -157,6 +157,23 @@ void game::initShaders()
 
 
 	
+}
+
+void game::fpsCounter()
+{
+	static const int num_Samples = 10;
+	static float frameTimes[num_Samples];
+	static int currentFrame = 0;
+	
+	static float previousTicks = SDL_GetTicks();
+	float currentTicks;
+	
+	currentTicks = SDL_GetTicks();
+
+	_frameTime = currentTicks - previousTicks;
+	frameTimes[currentFrame%num_Samples] = _frameTime;
+
+
 }
 
 void game::getResolution()
