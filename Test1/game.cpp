@@ -100,10 +100,13 @@ void game::initsystems()
 		fatalError("Could not Initialize GLEW");
 	}
 	
+	cout << "OPENGL VERSION : " << glGetString(GL_VERSION);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
 
 	
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//Sets the Color of the OpenGL context to the specified values. In this case the color is black.
+
+	SDL_GL_SetSwapInterval(1);
 
 
 	initShaders();
