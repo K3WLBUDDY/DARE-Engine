@@ -4,13 +4,13 @@
    */
 
 
-CHANGELOG:
+CHANGELOG
 
 	-> Removed CEGUI and migrated to Qt.
 	-> Added FPS Counter
 
 
-PROJECT FILES:
+PROJECT FILES
 
 	-> main.cpp - The entry point for the program.
 	-> game.cpp - Contains the main game loop and initializtions for shaders and sprites.
@@ -24,7 +24,4 @@ PROJECT FILES:
 	-> GUI.cpp - CEGUI Logic *not used anymore*
 	-> errors.cpp - Global Error Handler
 
-PROGRAM FLOW:
-
-	The program starts with the main loop by initializing an object for the game class. Since SDL is being used the main loop's
-	function parameters must be of the form "int main(int argc, char** argv)".fa
+	

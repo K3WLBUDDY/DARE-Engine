@@ -72,7 +72,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(IncludePath)</IncludePath>
+    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;C:\Qt\Qt5.7.0\5.7\msvc2013_64\include\QtWidgets;$(IncludePath)</IncludePath>
     <LibraryPath>F:\VC++_Dell_Copy\VC++\deps\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -131,7 +131,6 @@
     <ClCompile Include="errors.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
-    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -144,7 +143,6 @@
     <ClInclude Include="errors.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GLSLProgram.h" />
-    <ClInclude Include="GUI.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="OpenGLTexture.h" />

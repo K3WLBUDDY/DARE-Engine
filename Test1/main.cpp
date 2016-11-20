@@ -18,10 +18,9 @@ int main(int argc, char** argv)
 	g1.run();//The Function that starts everything.
 
 
-	//TODO: Make the Exit Function more easier
-
-	cout << "\n Enter any Key to Continue";
+	/**cout << "\n Enter any Key to Continue";
 	int tmp;
 	cin >> tmp;
+	**/
 	return 0;
 }

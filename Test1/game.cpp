@@ -5,6 +5,7 @@
 #include"errors.h"
 //#include"ImageLoader.h"
 #include"OpenGLTexture.h"
+//#include<QtWidgets.h>
 //#include<GLM\glm.hpp>
 //#include"GUI.h"
 
