@@ -1,1 +1,1 @@
-You'll find the Core Engine files here. For Game specific files refer to the Game1 dir
+You'll find the Core Engine files here. For Game specific files refer to the Test1 dir
