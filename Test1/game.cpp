@@ -16,7 +16,8 @@ using namespace std;
 
 game::game() : _window(nullptr),
 				games(gamestate::PLAY),
-				time(0.0f)
+				time(0.0f),
+				_maxFPS(60.0f)
 {
 
 }
@@ -25,39 +26,53 @@ void game::run()
 {
 	getResolution();
 	initsystems();
+	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
+	_sprites.back()->init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
 	_sprites.push_back(new sprite());
-	_sprites.back()->init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
-	//for (int i = 0; i < 1000; i++)
-	//{
-		_sprites.push_back(new sprite());
-		_sprites.back()->init(0.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
-	//}
-	//_sprite.init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//Sends the Coordinates of the Vertices of the Quad to Sprite Class.
-	
+	_sprites.back()->init(0.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
+
 
 	//_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
 	//_ChangeTexture = ImageLoader::loadPNG("changeTexture.png");
 
 	while (games != gamestate::STOP)
 	{
+		float startTick = SDL_GetTicks();
 		process_input();
 		time += 0.01f; //Adds to the time variable every frame
 		drawGame();
+		fpsCounter();
+
+		static int framecount = 0;
+		framecount++;
+
+		if (framecount == 10)
+		{
+			cout << "\n FPS: " << _fps << endl;
+			framecount = 0;
+		}
+
+		float frameTick = SDL_GetTicks() - startTick;
+
+		if (1000.0f / _maxFPS > frameTick)
+		{
+			SDL_Delay(1000.0f / _maxFPS - frameTick);
+		}
 	}
 }
 
-void game::process_input() //This funtion must whenever the frame is updated.
+void game::process_input() 
 {
-	SDL_Event evnt; //Creates a variable of type SDL_event
+	SDL_Event evnt; 
 
 	while (SDL_PollEvent(&evnt)) //Checks for any pending events that must be processed. Returns 1 if there is an event pending or 0 for none
 	{
-		switch (evnt.type) //Gets the type of the event that is pending.
+		switch (evnt.type) 
 		{
-		case SDL_QUIT: //Refers to the event of pressing the cross.
+		case SDL_QUIT:
 			games = gamestate::STOP;
 			break;
-		case SDL_MOUSEMOTION: //Refers to the movement of the mouse
+		case SDL_MOUSEMOTION:
 			//cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
 			break;
 		}
@@ -66,11 +81,11 @@ void game::process_input() //This funtion must whenever the frame is updated.
 
 void game::initsystems()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);//Primary initialisation of everything.
-	_window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);//Creates an SDL window
+	SDL_Init(SDL_INIT_EVERYTHING);
+	_window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, SDL_WINDOW_OPENGL);//Creates an SDL window
 	if (_window == nullptr)
 	{
-		fatalError("SDL Window could not be created!");//Calls the global function defined in errors.cpp
+		fatalError("SDL Window could not be created!");
 	}
 
 	SDL_GLContext glContext = SDL_GL_CreateContext(_window); //Creates an OpenGL context in the created SDL window
@@ -93,30 +108,17 @@ void game::initsystems()
 
 	initShaders();
 
-	//Initializing the GUI related stuff
-
-	//The GUI Stuff doesn't work yet. Mostly issues with the sprite system due to the lack of a proper sprite batch.
-	//m_gui.init("GUI");
-	//m_gui.loadScheme("TaharezLook.scheme");
-	//m_gui.setFont("DejaVuSans-10");
-	//m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
-	//CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),glm::vec4(0.0f),"TestButton"));
-	//testButton->setText("Hello World");
-	
 	
 }
 
 void game::drawGame()
 {
 
-	//glClearDepth(1.0);//Clears the Z-Buffer or the Depth Buffer
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Clears the Color and Depth buffers.
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	_colorProgram.use();
 	
 	glActiveTexture(GL_TEXTURE0); //Selects the Texture unit that will be affected
-	//glBindTexture(GL_TEXTURE_2D, _playerTexture.ID); //Binds the Texture
 
 	GLint textureLocation = _colorProgram.getUniformLocation("mySampler"); //Gets the location of the Texture Variable present in the Shader
 	glUniform1i(textureLocation,0);
@@ -124,8 +126,6 @@ void game::drawGame()
 	glUniform1f(timeLocation, time); //Sends the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
 
 
-	
-	//_sprite.draw();
 	for (int i = 0; i < _sprites.size(); i++)
 	{
 		_sprites[i]->draw();
@@ -134,10 +134,7 @@ void game::drawGame()
 	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
-	//glActiveTexture(GL_TEXTURE_0);
-
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//m_gui.draw();
+	
 
 	
 
@@ -162,18 +159,38 @@ void game::initShaders()
 
 void game::fpsCounter()
 {
-	static const int num_Samples = 10;
+	static const int num_Samples = 10;//To Average the Frame times over 10 frames.Using static since values must be retained whenever the frame is drawm.
 	static float frameTimes[num_Samples];
 	static int currentFrame = 0;
 	
 	static float previousTicks = SDL_GetTicks();
 	float currentTicks;
 	
-	currentTicks = SDL_GetTicks();
+	currentTicks = SDL_GetTicks(); //Gets the current ms since SDL was initialized
 
 	_frameTime = currentTicks - previousTicks;
-	frameTimes[currentFrame%num_Samples] = _frameTime;
+	frameTimes[currentFrame%num_Samples] = _frameTime;//Implementing Circular Buffer.
 
+	previousTicks = currentTicks;
+
+	int count;
+	currentFrame++;
+
+	if (currentFrame < num_Samples)
+		count = currentFrame;
+	else
+		count = num_Samples;
+	float frameTimeAverage = 0;
+	for (int i = 0; i < count; i++)
+		frameTimeAverage += frameTimes[i];
+
+	frameTimeAverage /= count;
+
+	if (frameTimeAverage>0)
+		_fps = 1000.0f / frameTimeAverage;
+	else
+		_fps = 60.0f;
+	
 
 }
 

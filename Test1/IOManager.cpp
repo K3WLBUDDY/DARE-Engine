@@ -10,13 +10,6 @@ bool IOManager::readFileToBuffer(std::vector<unsigned char>& buffer, std::string
 		perror(filepath.c_str());//Perror prints the error message. It takes a C String as an argument.
 		return false;
 	}
-
-	/* -----------------------------------------------------------------------------------------
-	    Were you wondering when to use seekg and tellg in your 12th grade? Here you go lol..   
-	   																					   
-	    The below code modifies the size of the buffer to the correct size of the Texture file.
-	   -----------------------------------------------------------------------------------------
-	*/
 	file.seekg(0, std::ios::end);//Seeks to the end. First parameter is the byte offset. Here it is 0 bytes offset from the end
 	int fileSize = file.tellg();//Tells the bytes passed by the get pointer. 
 	file.seekg(0, std::ios::beg);//Places the get pointer at the beginning of the file.

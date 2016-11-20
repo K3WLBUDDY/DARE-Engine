@@ -1,13 +1,9 @@
 #pragma once
 #include<SDL/SDL.h>
 #include<GL/glew.h>
-
-#include"sprite.h" //Includes the Spirte Class
-
-#include"GLSLProgram.h" //Includes the Shader Class
+#include"sprite.h" 
+#include"GLSLProgram.h" 
 #include"OpenGLTexture.h"
-
-//#include"GUI.h"
 #include<Windows.h>
 #include<vector>
 
@@ -34,13 +30,10 @@ private:
 	void getResolution();
 	void fpsCounter();
 	float time;
-
 	GLSLProgram _colorProgram;
 	//OpenGLTexture _playerTexture; //Initialises a texture with the attributes defined in OpenGLTexture.h
 	OpenGLTexture _ChangeTexture;
-	//GUI m_gui;
-	std::vector<sprite*> _sprites;
-
-	float _fps, _frameTime;
+	std::vector<sprite*> _sprites; //Declares a Vector for Sprites.
+	float _fps, _frameTime, _maxFPS;
 };
 
