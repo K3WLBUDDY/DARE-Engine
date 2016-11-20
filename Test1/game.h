@@ -1,9 +1,9 @@
 #pragma once
 #include<SDL/SDL.h>
 #include<GL/glew.h>
-#include"sprite.h" 
-#include"GLSLProgram.h" 
-#include"OpenGLTexture.h"
+#include<DARE_Engine/sprite.h>
+#include<DARE_Engine/GLSLProgram.h>
+#include<DARE_Engine/OpenGLTexture.h>
 #include<Windows.h>
 #include<vector>
 

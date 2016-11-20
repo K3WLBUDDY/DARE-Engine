@@ -68,7 +68,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(SolutionDir)DARE_Engine\;$(IncludePath)</IncludePath>
+    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(SolutionDir);$(IncludePath)</IncludePath>
     <LibraryPath>F:\VC++_Dell_Copy\VC++\deps\lib;$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

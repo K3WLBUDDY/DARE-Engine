@@ -1,10 +1,5 @@
 #include<iostream>
-#include<GL\glew.h>
-
 #include"game.h"
-#include"sprite.h"
-
-#include<SDL\SDL.h>
 
 using namespace std;
 
