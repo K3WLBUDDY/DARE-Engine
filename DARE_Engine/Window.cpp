@@ -1,5 +1,4 @@
 #include "Window.h"
-#include "Window.h"
 #include "errors.h"
 
 
@@ -10,7 +9,7 @@ int Window::createWindow(std::string windowName, unsigned int currentFlags)
 	setWidth();
 	setHeight();
 
-	Uint32 flags;
+	Uint32 flags = SDL_WINDOW_OPENGL;
 
 	if (currentFlags & INVISIBLE)
 	{
@@ -56,11 +55,12 @@ int Window::createWindow(std::string windowName, unsigned int currentFlags)
 
 }
 
-int Window::createWindow(std::string windowName, int _width, int _height, unsigned int currentFlags)
+
+int Window::createWindow(std::string windowName, int width, int height, unsigned int currentFlags)
 {
 
 
-	Uint32 flags;
+	Uint32 flags = SDL_WINDOW_OPENGL;
 
 	if (currentFlags & INVISIBLE)
 	{
@@ -76,7 +76,7 @@ int Window::createWindow(std::string windowName, int _width, int _height, unsign
 	{
 		flags |= SDL_WINDOW_BORDERLESS;
 	}
-	_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _width, _height, flags);
+	_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
 	if (_sdlWindow == nullptr)
 	{
 		fatalError("SDL Window could not be created!");
@@ -95,7 +95,7 @@ int Window::createWindow(std::string windowName, int _width, int _height, unsign
 	}
 
 	std::cout << "OPENGL VERSION : " << glGetString(GL_VERSION);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
+	
 
 
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//Sets the Color of the OpenGL context to the specified values. In this case the color is black.
@@ -105,10 +105,23 @@ int Window::createWindow(std::string windowName, int _width, int _height, unsign
 	return 0;
 }
 
+
+void Window::setWidth()
+{
+	_width = GetSystemMetrics(SM_CXSCREEN);
+}
+
+void Window::setHeight()
+{
+	_height = GetSystemMetrics(SM_CYSCREEN);
+}
+
+
 void Window::swapBuffer()
 {
 	SDL_GL_SwapWindow(_sdlWindow);
 }
+
 Window::Window() 
 {
 }

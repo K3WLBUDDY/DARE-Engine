@@ -72,6 +72,7 @@ void game::process_input()
 void game::initsystems()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
 	
 	_window.createWindow("DARE v0.1", 0);
 
@@ -115,7 +116,7 @@ void game::drawGame()
 
 void game::initShaders()
 {
-	//TODO: ADD COMMENTS FOR THIS FUNCTION
+	
 	_colorProgram.compileShaders("Shaders/colorShading.vert.txt", "Shaders/colorShading.frag.txt");//Calls the CompileShaders function in GLSLProgram Class
 	_colorProgram.addAttribute("vertexPosition"); //Binds the vertexPosition Attribute from the Vertex Shader
 	_colorProgram.addAttribute("vertexColor"); //Binds the vertexColor attribute from the Vertex Shader

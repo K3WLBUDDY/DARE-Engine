@@ -17,15 +17,10 @@ public:
 	int createWindow(std::string windowName, int _width, int _height, unsigned int currentFlags);
 	void swapBuffer();
 
-	void setWidth()
-	{
-		_width = GetSystemMetrics(SM_CXSCREEN);
-	}
+	void setWidth();
 
-	void setHeight()
-	{
-		_height = GetSystemMetrics(SM_CYSCREEN);
-	}
+
+	void setHeight();
 
 	int getWidth()
 	{

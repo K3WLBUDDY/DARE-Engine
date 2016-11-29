@@ -3,7 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test1", "Test1\Test1.vcxproj", "{A1D2468E-F9F4-48FD-819C-F25E06DAD516}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game1", "Test1\Test1.vcxproj", "{A1D2468E-F9F4-48FD-819C-F25E06DAD516}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B762878A-BFAE-43A8-AC13-60823CBF917B} = {B762878A-BFAE-43A8-AC13-60823CBF917B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DARE_Engine", "DARE_Engine\DARE_Engine.vcxproj", "{B762878A-BFAE-43A8-AC13-60823CBF917B}"
 EndProject
