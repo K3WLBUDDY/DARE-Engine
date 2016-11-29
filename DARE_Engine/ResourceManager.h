@@ -1,13 +1,17 @@
 #pragma once
 #include"TextureCache.h"
-class ResourceManager
+
+namespace DARE_Engine
 {
-public:
-	static OpenGLTexture getTexture(std::string texPath);
+	class ResourceManager
+	{
+	public:
+		static OpenGLTexture getTexture(std::string texPath);
 
-	//static GLuint _boundTex;
-	
-private:
-	static TextureCache _texCache;
-};
+		//static GLuint _boundTex;
 
+	private:
+		static TextureCache _texCache;
+	};
+
+}

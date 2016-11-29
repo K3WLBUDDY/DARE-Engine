@@ -7,6 +7,8 @@
 
 using namespace std;
 
+using namespace DARE_Engine;
+
 void fatalError(string errorString)
 {
 	cout << errorString << endl;

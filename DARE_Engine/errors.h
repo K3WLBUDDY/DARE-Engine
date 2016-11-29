@@ -2,6 +2,10 @@
 
 #include<string>
 
-using namespace std;
+namespace DARE_Engine
+{
 
-extern void fatalError(string errorString);
+
+	extern void fatalError(std::string errorString);
+
+}

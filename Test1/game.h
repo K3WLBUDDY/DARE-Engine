@@ -8,7 +8,7 @@
 #include<DARE_Engine/errors.h>
 #include<vector>
 
-//using namespace DARE_Engine;
+using namespace DARE_Engine;
 
 enum class gamestate {PLAY,STOP};
 

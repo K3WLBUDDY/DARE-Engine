@@ -1,6 +1,6 @@
 
 #include <vector>
-
+#include"Picopng.h"
 /*
 decodePNG: The picoPNG function, decodes a PNG file buffer in memory, into a raw pixel buffer.
 out_image: output parameter, this will contain the raw pixels after decoding.
@@ -22,6 +22,8 @@ to know this information yourself to be able to use the data so this only
 works for trusted PNG files. Use LodePNG instead of picoPNG if you need this information.
 return: 0 if success, not 0 if some error occured.
 */
+using namespace DARE_Engine;
+
 int decodePNG(std::vector<unsigned char>& out_image, unsigned long& image_width, unsigned long& image_height, const unsigned char* in_png, size_t in_size, bool convert_to_rgba32 = true)
 {
 	// picoPNG version 20101224

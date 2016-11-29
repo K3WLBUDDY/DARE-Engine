@@ -1,7 +1,7 @@
 #include "Window.h"
 #include "errors.h"
 
-
+using namespace DARE_Engine;
 
 int Window::createWindow(std::string windowName, unsigned int currentFlags)
 {

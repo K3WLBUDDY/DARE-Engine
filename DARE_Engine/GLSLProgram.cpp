@@ -8,7 +8,7 @@
 #include<SDL\SDL.h>
 
 using namespace std;
-
+using namespace DARE_Engine;
 
 GLSLProgram::GLSLProgram() : _numAttributes(0), _programID(0), _vertexShaderID(0), _fragmentShaderID(0)  //Initialization List. Slightly Faster
 {

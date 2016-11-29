@@ -2,8 +2,7 @@
 #include"ImageLoader.h"
 #include<iostream>
 
-
-
+using namespace DARE_Engine;
 
 OpenGLTexture TextureCache::getTexture(std::string texPath)
 {

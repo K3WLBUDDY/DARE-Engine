@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include<DARE_Engine\DARE_Engine.h>
 #include<iostream>
 #include<string>
 
@@ -7,7 +7,7 @@
 
 
 using namespace std;
-
+//using namespace DARE_Engine;
 
 game::game() : 
 				games(gamestate::PLAY),
@@ -71,9 +71,9 @@ void game::process_input()
 
 void game::initsystems()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
-	
+
+	init();
+
 	_window.createWindow("DARE v0.1", 0);
 
 	initShaders();

@@ -2,6 +2,8 @@
 #include<fstream>
 
 
+using namespace DARE_Engine;
+
 bool IOManager::readFileToBuffer(std::vector<unsigned char>& buffer, std::string filepath) //Calling Buffer by Value ie it takes the reference of the in vector
 {
 	std::ifstream file(filepath, std::ios::binary);//File read in binary format. Just the Raw data. 

@@ -6,6 +6,7 @@
 #include<iostream>
 
 using namespace std;
+using namespace DARE_Engine;
 
 OpenGLTexture ImageLoader::loadPNG(std::string filePath)
 {

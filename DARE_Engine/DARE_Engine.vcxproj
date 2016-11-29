@@ -148,6 +148,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DARE_Engine.cpp" />
     <ClCompile Include="errors.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
     <ClCompile Include="GUI.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DARE_Engine.h" />
     <ClInclude Include="errors.h" />
     <ClInclude Include="GLSLProgram.h" />
     <ClInclude Include="GUI.h" />

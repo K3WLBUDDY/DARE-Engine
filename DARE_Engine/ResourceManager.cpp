@@ -1,5 +1,6 @@
 #include "ResourceManager.h"
 
+using namespace DARE_Engine;
 
 TextureCache ResourceManager::_texCache;
 

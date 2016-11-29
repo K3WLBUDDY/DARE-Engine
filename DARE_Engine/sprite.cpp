@@ -4,6 +4,7 @@
 
 #include<cstddef>
 
+using namespace DARE_Engine;
 
 sprite::sprite()
 {

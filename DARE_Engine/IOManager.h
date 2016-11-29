@@ -2,10 +2,14 @@
 #include<string>
 #include<vector>
 //This is a static class. No constructor or destructor needed.
-class IOManager
+
+namespace DARE_Engine
 {
-public:
-	
-	static bool readFileToBuffer(std::vector<unsigned char>& buffer, std::string filepath);
-};
+	class IOManager
+	{
+	public:
+
+		static bool readFileToBuffer(std::vector<unsigned char>& buffer, std::string filepath);
+	};
+}
 

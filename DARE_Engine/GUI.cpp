@@ -2,6 +2,7 @@
 #include<iostream>
 
 using namespace std;
+using namespace DARE_Engine;
 
 
 CEGUI::OpenGL3Renderer* GUI::m_renderer = nullptr;; //Initializes a OpenGL Renderer

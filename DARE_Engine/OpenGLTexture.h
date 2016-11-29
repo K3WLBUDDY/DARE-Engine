@@ -1,8 +1,12 @@
 #pragma once
 
 #include<GL/glew.h>
-struct OpenGLTexture
+
+namespace DARE_Engine
 {
-	GLuint ID;
-	int width, height;
-};
+	struct OpenGLTexture
+	{
+		GLuint ID;
+		int width, height;
+	};
+}
