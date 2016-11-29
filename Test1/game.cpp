@@ -2,14 +2,14 @@
 
 #include<iostream>
 #include<string>
-#include<DARE_Engine/errors.h">
+
 
 
 
 using namespace std;
 
 
-game::game() : _window(nullptr),
+game::game() : 
 				games(gamestate::PLAY),
 				time(0.0f),
 				_maxFPS(60.0f)
@@ -19,22 +19,17 @@ game::game() : _window(nullptr),
 
 void game::run()
 {
-	getResolution();
 	initsystems();
 	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
 	_sprites.back()->init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
 	_sprites.push_back(new sprite());
 	_sprites.back()->init(0.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
 
-
-	//_playerTexture = ImageLoader::loadPNG("Textures/JimmyJump/PNG/CharacterRight_Standing.png"); // Loads the PNG file into picopng for decoding into raw pixel data
-	//_ChangeTexture = ImageLoader::loadPNG("changeTexture.png");
-
 	while (games != gamestate::STOP)
 	{
 		float startTick = SDL_GetTicks();
 		process_input();
-		time += 0.01f; //Adds to the time variable every frame
+		time += 0.01f; 
 		drawGame();
 		fpsCounter();
 
@@ -60,7 +55,7 @@ void game::process_input()
 {
 	SDL_Event evnt; 
 
-	while (SDL_PollEvent(&evnt)) //Checks for any pending events that must be processed. Returns 1 if there is an event pending or 0 for none
+	while (SDL_PollEvent(&evnt))
 	{
 		switch (evnt.type) 
 		{
@@ -77,32 +72,8 @@ void game::process_input()
 void game::initsystems()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	_window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, SDL_WINDOW_OPENGL);//Creates an SDL window
-	if (_window == nullptr)
-	{
-		fatalError("SDL Window could not be created!");
-	}
-
-	SDL_GLContext glContext = SDL_GL_CreateContext(_window); //Creates an OpenGL context in the created SDL window
-	if (glContext == nullptr)
-	{
-		fatalError("SDL_GL Context could not be created");
-	}
-
-	GLenum error = glewInit(); //Initialises GLEW and checks for error at the same time. 
-	if (error != GLEW_OK)
-	{
-		fatalError("Could not Initialize GLEW");
-	}
 	
-	cout << "OPENGL VERSION : " << glGetString(GL_VERSION);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
-
-	
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//Sets the Color of the OpenGL context to the specified values. In this case the color is black.
-
-	SDL_GL_SetSwapInterval(1);
-
+	_window.createWindow("DARE v0.1", 0);
 
 	initShaders();
 
@@ -137,7 +108,7 @@ void game::drawGame()
 	
 
 	
-	SDL_GL_SwapWindow(_window);//Swaps between the two buffers in the DoubleBuffer window
+	_window.swapBuffer();//Swaps between the two buffers in the DoubleBuffer window
 	
 	
 }
@@ -191,13 +162,6 @@ void game::fpsCounter()
 	
 
 }
-
-void game::getResolution()
-{
-	width = GetSystemMetrics(SM_CXSCREEN);
-	height = GetSystemMetrics(SM_CYSCREEN);
-}
-
 
 
 game::~game()

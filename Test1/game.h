@@ -4,36 +4,48 @@
 #include<DARE_Engine/sprite.h>
 #include<DARE_Engine/GLSLProgram.h>
 #include<DARE_Engine/OpenGLTexture.h>
-#include<Windows.h>
+#include<DARE_Engine/Window.h>
+#include<DARE_Engine/errors.h>
 #include<vector>
 
-
-
-
-enum class gamestate {PLAY,STOP}; //Global enum to check if the player has pressed the exit button or not.
+enum class gamestate {PLAY,STOP};
 
 class game
 {
 public:
-	void run(); //Function that Starts everything
-	void process_input();//Polls for a mouse event and prints the coordinates of the pointer.
-	void drawGame();//Draws the Sprite along with the Shader
-	void initsystems();//Initialises the SDL window, OpenGL Context and GLEW.
-	void initShaders();//Initialises the Shaders.
+
+	void run(); 
+
+	void process_input();
+
+	void drawGame();
+
+	void initsystems();
+
+	void initShaders();
+
 	game();
+
 	~game();
+
 	gamestate games;
+
 private:
-	SDL_Window* _window;
+
+	Window _window;
+
 	sprite _sprite;
-	int width, height;
-	void getResolution();
+
 	void fpsCounter();
+
 	float time;
+
 	GLSLProgram _colorProgram;
-	//OpenGLTexture _playerTexture; //Initialises a texture with the attributes defined in OpenGLTexture.h
+	
 	OpenGLTexture _ChangeTexture;
-	std::vector<sprite*> _sprites; //Declares a Vector for Sprites.
+
+	std::vector<sprite*> _sprites; 
+
 	float _fps, _frameTime, _maxFPS;
 };
 
