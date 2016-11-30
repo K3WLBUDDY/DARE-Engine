@@ -7,9 +7,9 @@
 
 using namespace std;
 
-using namespace DARE_Engine;
+//using namespace DARE_Engine;
 
-void fatalError(string errorString)
+void DARE_Engine::fatalError(string errorString)
 {
 	cout << errorString << endl;
 	cout << "\n Enter any key to Quit...";

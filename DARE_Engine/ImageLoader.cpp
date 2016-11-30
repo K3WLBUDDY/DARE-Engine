@@ -8,7 +8,7 @@
 using namespace std;
 using namespace DARE_Engine;
 
-OpenGLTexture ImageLoader::loadPNG(std::string filePath)
+OpenGLTexture ImageLoader::loadPNG(string filePath)
 {
 	OpenGLTexture texture = {};
 	
@@ -20,12 +20,10 @@ OpenGLTexture ImageLoader::loadPNG(std::string filePath)
 	if (IOManager::readFileToBuffer(in, filePath) == false)
 		fatalError("Failed to load PNG File to Buffer");
 
-	//By this point in must contain the 
-
 	int errorCode = decodePNG(out, width, height, &in[0], in.size());
 
 	if (errorCode != 0)
-		fatalError("decodePNG failed with error: " + std::to_string(errorCode));
+		fatalError("decodePNG failed with error: " + to_string(errorCode));
 	
 	glGenTextures(1, &(texture.ID));
 

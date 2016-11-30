@@ -16,7 +16,7 @@ GLSLProgram::GLSLProgram() : _numAttributes(0), _programID(0), _vertexShaderID(0
 }
 
 
-//Getter for getting both the Shaders and creating a Program ID
+
 void GLSLProgram::compileShaders(const string& VertexShaderFilePath, const string& FragmentShaderFilePath)
 {
 	  _programID = glCreateProgram(); //Creates a program ID to be later used when linking the shaders
@@ -24,13 +24,13 @@ void GLSLProgram::compileShaders(const string& VertexShaderFilePath, const strin
 	_vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	if (_vertexShaderID == 0) //0 signifies an error in creating the Shader.
 	{
-		fatalError("Vertex Shader failed to be created");
+		DARE_Engine::fatalError("Vertex Shader failed to be created");
 	}
 
 	_fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 	if (_fragmentShaderID == 0)
 	{
-		fatalError("Fragment Shader failed to be created");
+		DARE_Engine::fatalError("Fragment Shader failed to be created");
 	}
 
 	compileShader(VertexShaderFilePath, _vertexShaderID);
@@ -40,7 +40,7 @@ void GLSLProgram::compileShaders(const string& VertexShaderFilePath, const strin
 }
 
 
-//To Compile Individual Shaders. 
+
 void GLSLProgram::compileShader(const string& filePath, GLuint id)
 {
 
@@ -50,7 +50,7 @@ void GLSLProgram::compileShader(const string& filePath, GLuint id)
 	if (vertexFile.fail())
 	{
 		perror(filePath.c_str()); //perror is a C function for printing errors related to file operations.
-		fatalError("Failed to Open" + filePath);
+		DARE_Engine::fatalError("Failed to Open" + filePath);
 	}
 	string fileContents = ""; //One String Variable to hold the entire shader code
 	string line;
@@ -86,7 +86,7 @@ void GLSLProgram::compileShader(const string& filePath, GLuint id)
 		glDeleteShader(id); //Deletes the wrongly compiled Shader
 
 		printf("%s\n", &(errorLog[0]));
-		fatalError("Shader failed to Compile");
+		DARE_Engine::fatalError("Shader failed to Compile");
 
 		SDL_Quit();
 	}
@@ -127,7 +127,7 @@ void GLSLProgram::linkShaders()
 
 		//Use the infoLog as you see fit.
 		printf("%s\n", &(infoLog[0]));
-		fatalError("Shader failed to Link");
+		DARE_Engine::fatalError("Shader failed to Link");
 		
 	}
 
@@ -148,7 +148,6 @@ void GLSLProgram::use()
 	glUseProgram(_programID);
 	for (int i = 0; i < _numAttributes; i++)
 	{
-		//cout << "\n Attrib No.: " << i;
 		glEnableVertexAttribArray(i); //Enables the Vertex Attributes. Must be done to use the Attribute.
 	}
 }
@@ -167,7 +166,7 @@ GLint GLSLProgram::getUniformLocation(const string& uniformName)
 	GLint location = glGetUniformLocation(_programID, uniformName.c_str()); //Returns the Location of the Uniform Variable
 	if (location == GL_INVALID_INDEX)
 	{
-		fatalError("Uniform" + uniformName + "not found in Shader");
+		DARE_Engine::fatalError("Uniform" + uniformName + "not found in Shader");
 	}
 	return location;
 

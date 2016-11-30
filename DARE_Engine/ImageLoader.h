@@ -3,12 +3,15 @@
 #include"OpenGLTexture.h"
 #include<string>
 
+using namespace std;
+
 namespace DARE_Engine
 {
 	class ImageLoader
 	{
-	public:
-		static OpenGLTexture loadPNG(std::string filePath);
+		public:
+		static OpenGLTexture loadPNG(string filePath);
 	};
+
 }
 

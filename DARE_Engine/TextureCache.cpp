@@ -4,7 +4,7 @@
 
 using namespace DARE_Engine;
 
-OpenGLTexture TextureCache::getTexture(std::string texPath)
+OpenGLTexture TextureCache::getTexture(string texPath)
 {
 	//std::map<std::string, OpenGLTexture>::iterator mit=_textureMap.find(texPath);
 	auto mit = _textureMap.find(texPath); //Auto automatically gets the Datatype based on the Argument. Here it deduces that the texture map is a string.

@@ -3,6 +3,8 @@
 #include<string>
 #include"ResourceManager.h"
 
+using namespace std;
+
 namespace DARE_Engine
 {
 	class sprite
@@ -11,14 +13,14 @@ namespace DARE_Engine
 		sprite();
 		~sprite();
 
-		void init(float x, float y, float width, float height, std::string texPath);//Gets the data to be sent to the VBO.
+		void init(float x, float y, float width, float height, string texPath);//Gets the data to be sent to the VBO.
 
 		void draw();
 		private:
 
 		float _x, _y, _width, _height;
 		GLuint _vboID;
-		DARE_Engine::OpenGLTexture _texture;
+		OpenGLTexture _texture;
 	};
 
 }
