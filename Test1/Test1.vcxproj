@@ -68,8 +68,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>D:\VC++\deps\include;$(SolutionDir);$(IncludePath)</IncludePath>
-    <LibraryPath>D:\VC++\deps\lib;$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)deps\include;$(SolutionDir);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)deps\lib;$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
