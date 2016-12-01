@@ -17,7 +17,7 @@ uniform mat4 P;
 
 void main() //By default main returns void.
 {
-    gl_Position.xy = (P* vec4(vertexPosition,0.0,1.0)).xy;
+    gl_Position.xy = (P* vec4(vertexPosition,0.0,1.0)).xy ; //Multiplying the Transformation Matrix with the Position Vertex.
     
     /* Above line is the same as 
 

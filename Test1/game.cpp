@@ -123,13 +123,13 @@ void game::drawGame()
 
 	GLint textureLocation = _colorProgram.getUniformLocation("mySampler"); //Gets the location of the Texture Variable present in the Shader
 	glUniform1i(textureLocation,0);
-	GLuint timeLocation = _colorProgram.getUniformLocation("time"); //Gets the Location of the Time Variable and stores it in timeLocation
-	glUniform1f(timeLocation, time); //Sends the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
+	GLuint timeLocation = _colorProgram.getUniformLocation("time"); //Gets the Location of the Time Variable 
+	glUniform1f(timeLocation, time); //Sends the  Value of the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
 
 	GLuint PLocation = _colorProgram.getUniformLocation("P");
 	glm::mat4 cameraMatrix = _camera.getCameraMatrix();
 
-	glUniformMatrix4fv(PLocation, 1, GL_FALSE, &(cameraMatrix[0][0]));
+	glUniformMatrix4fv(PLocation, 1, GL_FALSE, &(cameraMatrix[0][0])); // glUniformMatrix4fv(Location, count, Transpose Matrix (GL_TRUE, GL_FALSE), value);
 
 
 	for (int i = 0; i < _sprites.size(); i++)
