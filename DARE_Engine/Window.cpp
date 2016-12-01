@@ -25,7 +25,7 @@ int Window::createWindow(std::string windowName, unsigned int currentFlags)
 	{
 		flags |= SDL_WINDOW_BORDERLESS;
 	}
-	_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _width, _height, flags);//Creates an SDL window
+	_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);//Creates an SDL window
 	if (_sdlWindow == nullptr)
 	{
 		fatalError("SDL Window could not be created!");
@@ -108,12 +108,12 @@ int Window::createWindow(std::string windowName, int width, int height, unsigned
 
 void Window::setWidth()
 {
-	_width = GetSystemMetrics(SM_CXSCREEN);
+	width = GetSystemMetrics(SM_CXSCREEN);
 }
 
 void Window::setHeight()
 {
-	_height = GetSystemMetrics(SM_CYSCREEN);
+	height = GetSystemMetrics(SM_CYSCREEN);
 }
 
 

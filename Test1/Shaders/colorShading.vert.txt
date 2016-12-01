@@ -10,12 +10,14 @@ out vec2 fragmentPosition;
 out vec4 fragmentColor;
 out vec2 fragmentUV;
 
+uniform mat4 P;
+
 /* The Variables used here are called the Vertex Attributes.
    These attributes must be bound to the OpenGL Program.*/
 
 void main() //By default main returns void.
 {
-    gl_Position.xy = vertexPosition;
+    gl_Position.xy = (P* vec4(vertexPosition,0.0,1.0)).xy;
     
     /* Above line is the same as 
 

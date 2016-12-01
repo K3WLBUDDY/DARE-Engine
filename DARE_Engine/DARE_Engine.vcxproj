@@ -148,6 +148,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="DARE_Engine.cpp" />
     <ClCompile Include="errors.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera2D.h" />
     <ClInclude Include="DARE_Engine.h" />
     <ClInclude Include="errors.h" />
     <ClInclude Include="GLSLProgram.h" />

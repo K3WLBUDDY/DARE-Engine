@@ -13,6 +13,8 @@ namespace DARE_Engine
 	public:
 		Window();
 		~Window();
+		int width;
+		int height;
 
 		int createWindow(std::string windowName, unsigned int currentFlags);
 		int createWindow(std::string windowName, int _width, int _height, unsigned int currentFlags);
@@ -25,16 +27,15 @@ namespace DARE_Engine
 
 		int getWidth()
 		{
-			_width;
+			width;
 		}
 
 		int getHeight()
 		{
-			_height;
+			height;
 		}
 	private:
-		int _width;
-		int _height;
+		
 		SDL_Window* _sdlWindow;
 	};
 }

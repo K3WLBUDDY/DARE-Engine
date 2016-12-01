@@ -2,6 +2,7 @@
 #include<DARE_Engine\DARE_Engine.h>
 #include<iostream>
 #include<string>
+#
 
 
 
@@ -15,22 +16,25 @@ game::game() :
 				time(0.0f),
 				_maxFPS(60.0f)
 {
-
+	//_camera.init(_wid)
 }
 
 void game::run()
 {
 	initsystems();
 	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
-	_sprites.back()->init(-1.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
+	_sprites.back()->init(0.0f, 0.0f, _window.width / 2, _window.width / 2, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
 	_sprites.push_back(new sprite());
-	_sprites.back()->init(0.0f, -1.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
+	_sprites.back()->init(_window.width / 2, 0.0f, _window.width / 2, _window.width / 2, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
 
 	while (games != gamestate::STOP)
 	{
 		float startTick = SDL_GetTicks();
 		process_input();
 		time += 0.01f; 
+
+
+		_camera.update();
 		drawGame();
 		fpsCounter();
 
@@ -54,7 +58,9 @@ void game::run()
 
 void game::process_input() 
 {
-	SDL_Event evnt; 
+	SDL_Event evnt;
+	float cameraSpeed = 10;
+	float scaleSpeed = 0.1f;
 
 	while (SDL_PollEvent(&evnt))
 	{
@@ -66,6 +72,28 @@ void game::process_input()
 		case SDL_MOUSEMOTION:
 			//cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
 			break;
+		case SDL_KEYDOWN:
+			switch (evnt.key.keysym.sym)
+			{
+			case SDLK_w:
+				_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, -cameraSpeed));
+				break;
+			case SDLK_s:
+				_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, cameraSpeed));
+				break;
+			case SDLK_a:
+				_camera.setPosition(_camera.getPosition() + glm::vec2(cameraSpeed, 0.0));
+				break;
+			case SDLK_d:
+				_camera.setPosition(_camera.getPosition() + glm::vec2(-cameraSpeed, 0.0));
+				break;
+			case SDLK_q:
+				_camera.setScale(_camera.getScale() + scaleSpeed);
+				break;
+			case SDLK_e:
+				_camera.setScale(_camera.getScale() - scaleSpeed);
+				break;
+			}
 		}
 	}
 }
@@ -76,6 +104,8 @@ void game::initsystems()
 	init();
 
 	_window.createWindow("DARE v0.1", 0);
+
+	_camera.init(_window.width, _window.height);
 
 	initShaders();
 
@@ -95,6 +125,11 @@ void game::drawGame()
 	glUniform1i(textureLocation,0);
 	GLuint timeLocation = _colorProgram.getUniformLocation("time"); //Gets the Location of the Time Variable and stores it in timeLocation
 	glUniform1f(timeLocation, time); //Sends the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
+
+	GLuint PLocation = _colorProgram.getUniformLocation("P");
+	glm::mat4 cameraMatrix = _camera.getCameraMatrix();
+
+	glUniformMatrix4fv(PLocation, 1, GL_FALSE, &(cameraMatrix[0][0]));
 
 
 	for (int i = 0; i < _sprites.size(); i++)

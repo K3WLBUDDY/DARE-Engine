@@ -6,6 +6,7 @@
 #include<DARE_Engine/OpenGLTexture.h>
 #include<DARE_Engine/Window.h>
 #include<DARE_Engine/errors.h>
+#include<DARE_Engine/Camera2D.h>
 #include<vector>
 
 using namespace DARE_Engine;
@@ -46,7 +47,9 @@ private:
 	
 	OpenGLTexture _ChangeTexture;
 
-	std::vector<sprite*> _sprites; 
+	std::vector<sprite*> _sprites;
+
+	Camera2D _camera;
 
 	float _fps, _frameTime, _maxFPS;
 };
