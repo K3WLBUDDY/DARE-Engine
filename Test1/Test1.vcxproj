@@ -68,8 +68,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(SolutionDir);$(IncludePath)</IncludePath>
-    <LibraryPath>F:\VC++_Dell_Copy\VC++\deps\lib;$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\VC++\deps\include;$(SolutionDir);$(IncludePath)</IncludePath>
+    <LibraryPath>D:\VC++\deps\lib;$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
@@ -84,7 +84,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;OpenGL32.lib;glew32.lib;CEGUIBase-0_d.lib;CEGUIOpenGLRenderer-0_d.lib;glew32s.lib;DARE_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;OpenGL32.lib;glew32.lib;glew32s.lib;DARE_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
     </Link>

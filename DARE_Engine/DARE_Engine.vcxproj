@@ -67,8 +67,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\VC++_Dell_Copy\VC++\deps\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\VC++\deps\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\VC++\deps\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>F:\VC++_Dell_Copy\VC++\deps\include;$(IncludePath)</IncludePath>
@@ -88,7 +88,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;OpenGL32.lib;glew32.lib;CEGUIBase-0_d.lib;CEGUIOpenGLRenderer-0_d.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;OpenGL32.lib;glew32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,7 +151,6 @@
     <ClCompile Include="DARE_Engine.cpp" />
     <ClCompile Include="errors.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
-    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="Picopng.cpp" />
@@ -164,7 +163,6 @@
     <ClInclude Include="DARE_Engine.h" />
     <ClInclude Include="errors.h" />
     <ClInclude Include="GLSLProgram.h" />
-    <ClInclude Include="GUI.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="OpenGLTexture.h" />
