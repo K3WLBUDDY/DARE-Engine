@@ -21,6 +21,8 @@ class game
 {
 public:
 
+	int start;
+
 	void run(); 
 
 	void process_input();

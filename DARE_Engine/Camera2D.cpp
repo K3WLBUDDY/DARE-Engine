@@ -16,9 +16,18 @@ void Camera2D::init(int width, int height)
 
 void Camera2D::update()
 {
-	if (_change == true)
+
+	/*if (start == 1)
 	{
-		glm::vec3 translate(-_position.x + _width / 2, -_position.y + _height / 2, 0.0f);
+		//Camera is being initialized for the first time
+		glm::vec3 translate(_width / 2,  _height / 2, 0.0f);
+		_cameraMatrix = glm::translate(_orthoMatrix, translate);
+		start = 0;
+	}
+	*/
+    if (_change == true)
+	{
+		glm::vec3 translate(_position.x-_width/2 , -_position.y+_height/2 , 0.0f);
 		_cameraMatrix = glm::translate(_orthoMatrix, translate);
 
 		glm::vec3 scale(_scale, _scale, 0.0f);
