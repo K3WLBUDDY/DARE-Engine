@@ -43,7 +43,7 @@ void game::run()
 
 		if (framecount == 10)
 		{
-			cout << "\n FPS: " << _fps << endl;
+			//cout << "\n FPS: " << _fps << endl;
 			framecount = 0;
 		}
 
@@ -59,18 +59,21 @@ void game::run()
 void game::process_input() 
 {
 	SDL_Event evnt;
+	//SDL_MouseButtonEvent mouseEvent;
 	float cameraSpeed = 10;
 	float scaleSpeed = 0.1f;
 
+	//cout << mouseEvent.type;
+
 	while (SDL_PollEvent(&evnt))
 	{
-		switch (evnt.type) 
+		switch (evnt.type)
 		{
 		case SDL_QUIT:
 			games = gamestate::STOP;
 			break;
 		case SDL_MOUSEMOTION:
-			//cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
+			cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
 			break;
 		case SDL_KEYDOWN:
 			switch (evnt.key.keysym.sym)
@@ -94,6 +97,25 @@ void game::process_input()
 				_camera.setScale(_camera.getScale() - scaleSpeed);
 				break;
 			}
+		}
+		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state==SDL_PRESSED)
+		{
+
+			glm::vec2 position;
+			if (evnt.button.button == SDL_BUTTON_LEFT)
+			{
+				cout << "\n Left Mouse Button Clicked" << " State of Mouse : " << evnt.button.state;
+				_camera.setPosition(_camera.getPosition() + glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+			}
+				
+
+			else if (evnt.button.button == SDL_BUTTON_RIGHT)
+			{
+				cout << "\n Right Mouse Button Clicked";
+				_camera.setPosition(_camera.getPosition() - glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+				//cout << "\n Position of Camera : " << position;
+			}
+				
 		}
 	}
 }
