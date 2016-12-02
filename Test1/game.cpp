@@ -1,22 +1,13 @@
 #include "game.h"
-#include<DARE_Engine\DARE_Engine.h>
-#include<iostream>
-#include<string>
-#
-
-
-
-
 
 using namespace std;
-//using namespace DARE_Engine;
 
-game::game() : 
-				games(gamestate::PLAY),
-				time(0.0f),
-				_maxFPS(60.0f)
+game::game() :
+games(gamestate::PLAY),
+time(0.0f),
+_maxFPS(60.0f)
 {
-	//_camera.init(_wid)
+
 }
 
 void game::run()
@@ -59,23 +50,27 @@ void game::run()
 void game::process_input() 
 {
 	SDL_Event evnt;
-	//SDL_MouseButtonEvent mouseEvent;
+
 	float cameraSpeed = 10;
 	float scaleSpeed = 0.1f;
-
-	//cout << mouseEvent.type;
 
 	while (SDL_PollEvent(&evnt))
 	{
 		switch (evnt.type)
 		{
 		case SDL_QUIT:
+
 			games = gamestate::STOP;
 			break;
+
 		case SDL_MOUSEMOTION:
+
 			cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
+			_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
 			break;
+
 		case SDL_KEYDOWN:
+
 			switch (evnt.key.keysym.sym)
 			{
 			case SDLK_w:
@@ -97,6 +92,7 @@ void game::process_input()
 				_camera.setScale(_camera.getScale() - scaleSpeed);
 				break;
 			}
+
 		}
 		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state==SDL_PRESSED)
 		{
@@ -105,7 +101,15 @@ void game::process_input()
 			if (evnt.button.button == SDL_BUTTON_LEFT)
 			{
 				cout << "\n Left Mouse Button Clicked" << " State of Mouse : " << evnt.button.state;
-				_camera.setPosition(_camera.getPosition() + glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+				//_camera.setPosition(_camera.getPosition() + glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+
+				position = _camera.getPosition();
+
+				cout << "\n Position of Camera : " << glm::to_string(position);
+
+				if (evnt.button.state = SDL_RELEASED)
+					cout << "\n Mouse Button Released";
 			}
 				
 
@@ -113,7 +117,9 @@ void game::process_input()
 			{
 				cout << "\n Right Mouse Button Clicked";
 				_camera.setPosition(_camera.getPosition() - glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-				//cout << "\n Position of Camera : " << position;
+
+				position = _camera.getPosition();
+				cout << "\n Position of Camera : " << glm::to_string(position);
 			}
 				
 		}

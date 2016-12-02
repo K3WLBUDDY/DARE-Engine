@@ -7,7 +7,11 @@
 #include<DARE_Engine/Window.h>
 #include<DARE_Engine/errors.h>
 #include<DARE_Engine/Camera2D.h>
+#include<glm/gtx/string_cast.hpp>
 #include<vector>
+#include<DARE_Engine\DARE_Engine.h>
+#include<iostream>
+#include<string>
 
 using namespace DARE_Engine;
 
