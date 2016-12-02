@@ -23,9 +23,9 @@ void game::run()
 {
 	initsystems();
 	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
-	_sprites.back()->init(0.0f, 0.0f, _window.width / 2, _window.width / 2, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
+	_sprites.back()->init(0.0f, 0.0f, _window.width / 2, _window.width / 2, "Textures/DAREv0.1_logo.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
 	_sprites.push_back(new sprite());
-	_sprites.back()->init(_window.width / 2, 0.0f, _window.width / 2, _window.width / 2, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
+	_sprites.back()->init(_window.width / 2, 0.0f, _window.width / 2, _window.width / 2, "Textures/DAREv0.1_logo.png");
 
 	while (games != gamestate::STOP)
 	{
