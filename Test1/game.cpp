@@ -35,7 +35,7 @@ void game::run()
 
 		if (framecount == 10)
 		{
-			//cout << "\n\t\t FPS: " << _fps << endl;
+			cout << "\n\t\t FPS: " << _fps << endl;
 			framecount = 0;
 		}
 
@@ -63,13 +63,6 @@ void game::process_input()
 
 			games = gamestate::STOP;
 			break;
-
-		case SDL_MOUSEMOTION:
-
-			cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
-			//_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-			break;
-
 		case SDL_KEYDOWN:
 
 			switch (evnt.key.keysym.sym)
@@ -95,69 +88,16 @@ void game::process_input()
 			}
 
 		}
-		/*
-		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state==SDL_PRESSED)
-		{
-			buttonState = false;
-			
-			glm::vec2 position;
-			if (evnt.button.button == SDL_BUTTON_LEFT)
-			{
-				cout << "\n Left Mouse Button Clicked" << " State of Mouse : " << evnt.button.state;
-				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-				position = _camera.getPosition();
-
-				cout << "\n Position of Camera : " << glm::to_string(position);
-
-				if (evnt.button.state = SDL_RELEASED)
-					cout << "\n Mouse Button Released";
-
-			
-			}
-				
-
-			else if (evnt.button.button == SDL_BUTTON_RIGHT)
-			{
-				cout << "\n Right Mouse Button Clicked";
-				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-
-				position = _camera.getPosition();
-				cout << "\n Position of Camera : " << glm::to_string(position);
-			}
-				
-		}
-		if (evnt.button.type == SDL_MOUSEBUTTONUP)
-		{
-			cout << "\n Mouse Button Released";
-		}
-
-		if (evnt.button.type == SDL_MOUSEBUTTONUP && buttonState == false)
-		{
-			buttonState == true;
-		}
-		*/
+		
 		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.button == SDL_BUTTON_LEFT)
 		{
-			glm::vec2 position;
-			cout << "\n PASS 1 PRESSED";
-			//_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-			while (SDL_WaitEvent(&evnt))
+			while (SDL_WaitEvent(&evnt) && evnt.button.type != SDL_MOUSEBUTTONUP)
 			{
-				cout << "\n PASS 2"<< "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
 				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-				position = _camera.getPosition();
-				cout << "\n Position of Camera : " << glm::to_string(position);
 				_camera.update();
 				drawGame();
-				if (evnt.button.type==SDL_MOUSEBUTTONUP)
-					break;
 			}
 		}
-		if (evnt.button.type == SDL_MOUSEBUTTONUP && evnt.button.button == SDL_BUTTON_LEFT)
-		{
-			cout << "\n RELEASED";
-		}
-		
 	}
 }
 
@@ -166,9 +106,9 @@ void game::initsystems()
 
 	init();
 
-	//_window.createWindow("DARE v0.1", 0);
+	_window.createWindow("DARE v0.1", 0);
 
-	_window.createWindow("DARE v0.1", 1366, 768, 0);
+	//_window.createWindow("DARE v0.1", 1366, 768, 0);
 
 	_camera.init(_window.width, _window.height);
 

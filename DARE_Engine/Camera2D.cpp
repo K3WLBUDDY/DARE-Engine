@@ -19,20 +19,11 @@ void Camera2D::init(int width, int height)
 void Camera2D::update()
 {
 
-	/*if (start == 1)
-	{
-		//Camera is being initialized for the first time
-		glm::vec3 translate(_width / 2,  _height / 2, 0.0f);
-		_cameraMatrix = glm::translate(_orthoMatrix, translate);
-		start = 0;
-	}
-	*/
+	
     if (_change == true)
 	{
 		glm::vec3 translate(_position.x-_width/2 , -_position.y+_height/2 , 0.0f);
-		cout << "\n Reached the Spot";
 		_cameraMatrix = glm::translate(_orthoMatrix, translate);
-		cout << "\nIKDDSSDFG";
 
 		glm::vec3 scale(_scale, _scale, 0.0f);
 		_cameraMatrix = glm::scale(glm::mat4(1.0f), scale) *_cameraMatrix;

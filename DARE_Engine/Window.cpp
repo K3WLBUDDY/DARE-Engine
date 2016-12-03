@@ -1,12 +1,16 @@
 #include "Window.h"
 #include "errors.h"
+#include<iostream>
 
 using namespace DARE_Engine;
+using namespace std;
 
 int Window::createWindow(std::string windowName, unsigned int currentFlags)
 {
 	setWidth();
 	setHeight();
+
+	cout << "\n\n RESOLUTION : " << width << "x" << height << endl;
 
 	Uint32 flags = SDL_WINDOW_OPENGL;
 
@@ -60,6 +64,8 @@ int Window::createWindow(std::string windowName, int Wwidth, int Wheight, unsign
 
 	width = Wwidth;
 	height = Wheight;
+
+	cout << "\n\n RESOLUTION : " << width << "x" << height << endl;
 
 	Uint32 flags = SDL_WINDOW_OPENGL;
 
