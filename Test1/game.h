@@ -43,8 +43,6 @@ private:
 
 	Window _window;
 
-	bool buttonState;
-
 	sprite _sprite;
 
 	void fpsCounter();

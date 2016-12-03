@@ -13,7 +13,6 @@ _maxFPS(60.0f)
 void game::run()
 {
 	start = 1;
-	buttonState = true; //True signifies SDL_Released
 	initsystems();
 	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
 	_sprites.back()->init(0.0f, 0.0f, _window.width / 2, _window.width / 2, "Textures/DAREv0.1_logo.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
@@ -68,7 +67,7 @@ void game::process_input()
 		case SDL_MOUSEMOTION:
 
 			cout << "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
-			_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+			//_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
 			break;
 
 		case SDL_KEYDOWN:
@@ -82,10 +81,10 @@ void game::process_input()
 				_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, cameraSpeed));
 				break;
 			case SDLK_a:
-				_camera.setPosition(_camera.getPosition() + glm::vec2(cameraSpeed, 0.0));
+				_camera.setPosition(_camera.getPosition() - glm::vec2(cameraSpeed, 0.0));
 				break;
 			case SDLK_d:
-				_camera.setPosition(_camera.getPosition() + glm::vec2(-cameraSpeed, 0.0));
+				_camera.setPosition(_camera.getPosition() + glm::vec2(cameraSpeed, 0.0));
 				break;
 			case SDLK_q:
 				_camera.setScale(_camera.getScale() + scaleSpeed);
@@ -96,6 +95,7 @@ void game::process_input()
 			}
 
 		}
+		/*
 		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state==SDL_PRESSED)
 		{
 			buttonState = false;
@@ -126,7 +126,7 @@ void game::process_input()
 			}
 				
 		}
-		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state == SDL_RELEASED)
+		if (evnt.button.type == SDL_MOUSEBUTTONUP)
 		{
 			cout << "\n Mouse Button Released";
 		}
@@ -134,6 +134,28 @@ void game::process_input()
 		if (evnt.button.type == SDL_MOUSEBUTTONUP && buttonState == false)
 		{
 			buttonState == true;
+		}
+		*/
+		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.button == SDL_BUTTON_LEFT)
+		{
+			glm::vec2 position;
+			cout << "\n PASS 1 PRESSED";
+			//_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+			while (SDL_WaitEvent(&evnt))
+			{
+				cout << "\n PASS 2"<< "\nX: " << evnt.motion.x << " Y: " << evnt.motion.y;
+				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+				position = _camera.getPosition();
+				cout << "\n Position of Camera : " << glm::to_string(position);
+				_camera.update();
+				drawGame();
+				if (evnt.button.type==SDL_MOUSEBUTTONUP)
+					break;
+			}
+		}
+		if (evnt.button.type == SDL_MOUSEBUTTONUP && evnt.button.button == SDL_BUTTON_LEFT)
+		{
+			cout << "\n RELEASED";
 		}
 		
 	}
