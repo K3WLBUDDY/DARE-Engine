@@ -35,7 +35,7 @@ void game::run()
 
 		if (framecount == 10)
 		{
-			cout << "\n\t\t FPS: " << _fps << endl;
+			//cout << "\n\t\t FPS: " << _fps << endl;
 			framecount = 0;
 		}
 
@@ -97,6 +97,18 @@ void game::process_input()
 				_camera.update();
 				drawGame();
 			}
+		}
+		if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y > 0)
+		{
+			_camera.setScale(_camera.getScale() + scaleSpeed);
+			_camera.update();
+			drawGame();
+		}
+		else if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y < 0)
+		{
+			_camera.setScale(_camera.getScale() - scaleSpeed);
+			_camera.update();
+			drawGame();
 		}
 	}
 }
