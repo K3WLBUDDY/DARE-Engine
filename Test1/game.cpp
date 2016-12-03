@@ -35,7 +35,7 @@ void game::run()
 
 		if (framecount == 10)
 		{
-			//cout << "\n FPS: " << _fps << endl;
+			cout << "\n\t\t FPS: " << _fps << endl;
 			framecount = 0;
 		}
 
