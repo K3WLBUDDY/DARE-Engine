@@ -13,6 +13,7 @@ _maxFPS(60.0f)
 void game::run()
 {
 	start = 1;
+	buttonState = true; //True signifies SDL_Released
 	initsystems();
 	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
 	_sprites.back()->init(0.0f, 0.0f, _window.width / 2, _window.width / 2, "Textures/DAREv0.1_logo.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
@@ -35,7 +36,7 @@ void game::run()
 
 		if (framecount == 10)
 		{
-			cout << "\n\t\t FPS: " << _fps << endl;
+			//cout << "\n\t\t FPS: " << _fps << endl;
 			framecount = 0;
 		}
 
@@ -97,33 +98,44 @@ void game::process_input()
 		}
 		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state==SDL_PRESSED)
 		{
-
+			buttonState = false;
+			
 			glm::vec2 position;
 			if (evnt.button.button == SDL_BUTTON_LEFT)
 			{
 				cout << "\n Left Mouse Button Clicked" << " State of Mouse : " << evnt.button.state;
-				//_camera.setPosition(_camera.getPosition() + glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
 				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-
 				position = _camera.getPosition();
 
 				cout << "\n Position of Camera : " << glm::to_string(position);
 
 				if (evnt.button.state = SDL_RELEASED)
 					cout << "\n Mouse Button Released";
+
+			
 			}
 				
 
 			else if (evnt.button.button == SDL_BUTTON_RIGHT)
 			{
 				cout << "\n Right Mouse Button Clicked";
-				_camera.setPosition(_camera.getPosition() - glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
 
 				position = _camera.getPosition();
 				cout << "\n Position of Camera : " << glm::to_string(position);
 			}
 				
 		}
+		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.state == SDL_RELEASED)
+		{
+			cout << "\n Mouse Button Released";
+		}
+
+		if (evnt.button.type == SDL_MOUSEBUTTONUP && buttonState == false)
+		{
+			buttonState == true;
+		}
+		
 	}
 }
 
@@ -132,7 +144,9 @@ void game::initsystems()
 
 	init();
 
-	_window.createWindow("DARE v0.1", 0);
+	//_window.createWindow("DARE v0.1", 0);
+
+	_window.createWindow("DARE v0.1", 1366, 768, 0);
 
 	_camera.init(_window.width, _window.height);
 

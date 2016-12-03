@@ -5,6 +5,8 @@
 #include<string>
 #include<Windows.h>
 
+
+
 namespace DARE_Engine
 {
 	enum  WindowFlags { INVISIBLE = 0x1, FULLSCREEN = 0x2, BORDERLESS = 0x4 };
@@ -34,6 +36,8 @@ namespace DARE_Engine
 		{
 			height;
 		}
+
+		
 	private:
 		
 		SDL_Window* _sdlWindow;

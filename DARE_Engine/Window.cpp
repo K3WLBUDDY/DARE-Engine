@@ -5,7 +5,6 @@ using namespace DARE_Engine;
 
 int Window::createWindow(std::string windowName, unsigned int currentFlags)
 {
-
 	setWidth();
 	setHeight();
 
@@ -56,9 +55,11 @@ int Window::createWindow(std::string windowName, unsigned int currentFlags)
 }
 
 
-int Window::createWindow(std::string windowName, int width, int height, unsigned int currentFlags)
+int Window::createWindow(std::string windowName, int Wwidth, int Wheight, unsigned int currentFlags)
 {
 
+	width = Wwidth;
+	height = Wheight;
 
 	Uint32 flags = SDL_WINDOW_OPENGL;
 
@@ -108,7 +109,7 @@ int Window::createWindow(std::string windowName, int width, int height, unsigned
 
 void Window::setWidth()
 {
-	width = GetSystemMetrics(SM_CXSCREEN);
+	width = GetSystemMetrics(SM_CXSCREEN);	
 }
 
 void Window::setHeight()
