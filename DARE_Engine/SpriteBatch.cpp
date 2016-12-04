@@ -1,6 +1,9 @@
 #include "SpriteBatch.h"
+#include<algorithm>
 
 using namespace DARE_Engine;
+
+enum class GlyphSortType{NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE};
 
 void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color)
 {
@@ -41,11 +44,39 @@ void SpriteBatch::createVertexArray()
 		glGenBuffers(1, &_vbo);
 
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);//Enables the Vertex Attributes
+	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, position));//Defines an array from which data is used to draw
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(vertex), (void*)offsetof(vertex, color));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, uv));
+
+	glBindVertexArray(0);
+
+
 }
 
 void SpriteBatch::init()
 {
+	createVertexArray();
+}
 
+void SpriteBatch::begin(GlyphSortType sortType)
+{
+	_sortType = sortType;
+}
+
+void SpriteBatch::end()
+{
+	//sortGlyph();
+}
+
+void SpriteBatch::sortGlyph()
+{
+	
+	std::stable_sort();
 }
 
 SpriteBatch::SpriteBatch() :_vbo(0), _vao(0)

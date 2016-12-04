@@ -24,7 +24,7 @@ namespace DARE_Engine
 		SpriteBatch();
 		~SpriteBatch();
 
-		void begin(); // Ready for Drawing
+		void begin(GlyphSortType sortType = GlyphSortType::TEXTURE); // Ready for Drawing
 		void end(); //Post stuff like sorting images
 		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color); //Adds to the Batch
 		void renderBatch(); // Renders to the Screen
@@ -33,6 +33,9 @@ namespace DARE_Engine
 
 	private:
 		void createVertexArray();
+		void sortGlyph();
+
+		GlyphSortType _sortType;
 
 		GLuint _vbo;
 		GLuint _vao; // Holds the state information for draw calls

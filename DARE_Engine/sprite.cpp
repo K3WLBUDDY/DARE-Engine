@@ -70,13 +70,7 @@ void sprite::draw()
 	glBindTexture(GL_TEXTURE_2D, _texture.ID);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);//Enables the Vertex Attributes
-	glEnableVertexAttribArray(2);
-
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex,position));//Defines an array from which data is used to draw
-	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(vertex), (void*)offsetof(vertex, color));
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, uv));
+	
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
