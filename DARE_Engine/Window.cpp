@@ -46,7 +46,7 @@ int Window::createWindow(std::string windowName, unsigned int currentFlags)
 		fatalError("Could not Initialize GLEW");
 	}
 
-	std::cout << "OPENGL VERSION : " << glGetString(GL_VERSION);
+	std::cout << " OPENGL VERSION : " << glGetString(GL_VERSION);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//Sets the Attribute and its value. Here Double Buffer is set to 1.
 
 
@@ -59,11 +59,11 @@ int Window::createWindow(std::string windowName, unsigned int currentFlags)
 }
 
 
-int Window::createWindow(std::string windowName, int Wwidth, int Wheight, unsigned int currentFlags)
+int Window::createWindow(std::string windowName, int windowWidth, int widnowHeight, unsigned int currentFlags)
 {
 
-	width = Wwidth;
-	height = Wheight;
+	width = windowWidth;
+	height = widnowHeight;
 
 	cout << "\n\n RESOLUTION : " << width << "x" << height << endl;
 
