@@ -157,6 +157,7 @@
     <ClCompile Include="Picopng.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="SpriteBatch.cpp" />
     <ClCompile Include="TextureCache.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="Picopng.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="sprite.h" />
+    <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="TextureCache.h" />
     <ClInclude Include="vertex.h" />
     <ClInclude Include="Window.h" />
