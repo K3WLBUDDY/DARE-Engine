@@ -70,7 +70,9 @@ void sprite::draw()
 	glBindTexture(GL_TEXTURE_2D, _texture.ID);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 
-	glEnableVertexAttribArray(0);//Enables the Vertex Attributes
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);//Enables the Vertex Attributes
+	glEnableVertexAttribArray(2);
 
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex,position));//Defines an array from which data is used to draw
 	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(vertex), (void*)offsetof(vertex, color));
@@ -80,6 +82,8 @@ void sprite::draw()
 
 
 	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);//Unbinds the Data.
 

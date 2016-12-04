@@ -32,11 +32,12 @@ namespace DARE_Engine
 
 
 	private:
+		void createVertexArray();
 
 		GLuint _vbo;
-		GLuint _vao;
+		GLuint _vao; // Holds the state information for draw calls
 
-		std::vector<Glyph> _glyphs;
+		std::vector<Glyph*> _glyphs;
 
 	};
 }
