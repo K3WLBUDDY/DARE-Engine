@@ -3,10 +3,13 @@
 
 using namespace DARE_Engine;
 
-enum class GlyphSortType{NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE};
+enum class GlyphSortType{NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE}; //For sorting the Glyphs
 
 void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color)
 {
+	//TODO : Figure out the UV Maps for the Tex
+
+
 	Glyph* newGlyph = new Glyph;
 	newGlyph->texture = texture;
 	newGlyph->depth = depth;
@@ -76,9 +79,13 @@ void SpriteBatch::end()
 void SpriteBatch::sortGlyph()
 {
 	
-	std::stable_sort();
+	//std::stable_sort();
 }
 
+void SpriteBatch::renderBatch()
+{
+
+}
 SpriteBatch::SpriteBatch() :_vbo(0), _vao(0)
 {
 }

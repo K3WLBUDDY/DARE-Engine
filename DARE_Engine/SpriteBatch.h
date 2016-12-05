@@ -7,7 +7,7 @@
 namespace DARE_Engine
 {
 
-	struct Glyph // Single sprite. Holds the type of texture and depth. Depth is for layering sprites on top of each other
+	struct Glyph // Structure for Single sprite. Holds the type of texture and depth. Depth is for layering sprites on top of each other
 	{
 		GLuint texture;
 		float depth;
@@ -32,8 +32,8 @@ namespace DARE_Engine
 
 
 	private:
-		void createVertexArray();
-		void sortGlyph();
+		void createVertexArray(); //Creates a Vertex Array Object fo storing states of the Sprites and takes care of the various buffers
+		void sortGlyph(); //Sorts the Order of the Glyphs based on the 
 
 		GlyphSortType _sortType;
 

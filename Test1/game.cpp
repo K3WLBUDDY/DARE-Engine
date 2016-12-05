@@ -89,7 +89,7 @@ void game::process_input()
 
 		}
 		
-		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.button == SDL_BUTTON_LEFT)
+		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.button == SDL_BUTTON_LEFT) // Mouse Motion for translating the Sprite when the left mouse button is clicked.
 		{
 			while (SDL_WaitEvent(&evnt) && evnt.button.type != SDL_MOUSEBUTTONUP)
 			{
