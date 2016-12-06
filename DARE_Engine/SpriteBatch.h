@@ -37,7 +37,7 @@ namespace DARE_Engine
 
 		GlyphSortType _sortType;
 
-		GLuint _vbo;
+		GLuint _vbo; //Provides Buffer Data to be used in the Array Object
 		GLuint _vao; // Holds the state information for draw calls
 
 		std::vector<Glyph*> _glyphs;

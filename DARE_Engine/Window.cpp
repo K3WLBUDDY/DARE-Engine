@@ -65,6 +65,11 @@ int Window::createWindow(std::string windowName, int windowWidth, int widnowHeig
 	width = windowWidth;
 	height = widnowHeight;
 
+	if (width > GetSystemMetrics(SM_CXSCREEN) || height > GetSystemMetrics(SM_CYSCREEN))
+	{
+		cout << "\n Your Monitor does not Support the resolution. Check your display settings!";
+	}
+
 	cout << "\n\n RESOLUTION : " << width << "x" << height << endl;
 
 	Uint32 flags = SDL_WINDOW_OPENGL;
