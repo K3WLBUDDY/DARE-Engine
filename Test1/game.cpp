@@ -56,7 +56,7 @@ void game::process_input()
 {
 	SDL_Event evnt;
 
-	float cameraSpeed = 10;
+	float cameraSpeed = 2.0f;
 	float scaleSpeed = 0.1f;
 
 	while (SDL_PollEvent(&evnt))
@@ -68,7 +68,8 @@ void game::process_input()
 			games = gamestate::STOP;
 			break;
 		case SDL_KEYDOWN:
-
+			_inputManager.pressKey(evnt.key.keysym.sym);
+			/*
 			switch (evnt.key.keysym.sym)
 			{
 			case SDLK_w:
@@ -90,6 +91,9 @@ void game::process_input()
 				_camera.setScale(_camera.getScale() - scaleSpeed);
 				break;
 			}
+			*/
+		case SDL_KEYUP:
+			_inputManager.releaseKey(evnt.key.keysym.sym);
 
 		}
 		
@@ -124,6 +128,24 @@ void game::process_input()
 			drawGame();
 		}
 	}
+	if(_inputManager.isKeyPressed(SDLK_w))
+		_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, -cameraSpeed));
+		
+	if (_inputManager.isKeyPressed(SDLK_s))
+		_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, cameraSpeed));
+		
+	if (_inputManager.isKeyPressed(SDLK_a))
+		_camera.setPosition(_camera.getPosition() - glm::vec2(cameraSpeed, 0.0));
+		
+	if(_inputManager.isKeyPressed(SDLK_d))
+		_camera.setPosition(_camera.getPosition() + glm::vec2(cameraSpeed, 0.0));
+		
+	if(_inputManager.isKeyPressed(SDLK_q))
+		_camera.setScale(_camera.getScale() + scaleSpeed);
+		
+	if (_inputManager.isKeyPressed(SDLK_e))
+		_camera.setScale(_camera.getScale() - scaleSpeed);
+		
 }
 
 void game::initsystems()

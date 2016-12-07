@@ -7,6 +7,7 @@
 #include<DARE_Engine/Window.h>
 #include<DARE_Engine/errors.h>
 #include<DARE_Engine/Camera2D.h>
+#include<DARE_Engine/InputManager.h>
 #include<DARE_Engine\SpriteBatch.h>
 #include<glm/gtx/string_cast.hpp>
 #include<vector>
@@ -43,6 +44,8 @@ public:
 private:
 
 	Window _window;
+
+	InputManager _inputManager;
 
 	sprite _sprite;
 
