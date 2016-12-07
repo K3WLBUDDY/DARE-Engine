@@ -15,7 +15,7 @@ void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuin
 	newGlyph->depth = depth;
 
 	newGlyph->topLeft.color = color;
-	newGlyph->topLeft.setPosition(destRect.x, destRect.y + uvRect.w);
+	newGlyph->topLeft.setPosition(destRect.x, destRect.y + destRect.w);
 	newGlyph->topLeft.setUV(uvRect.x, uvRect.y + uvRect.w);
 
 	newGlyph->bottomLeft.color = color;
@@ -27,7 +27,7 @@ void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuin
 	newGlyph->bottomRight.setUV(uvRect.x + uvRect.z, uvRect.y);
 
 	newGlyph->topRight.color = color;
-	newGlyph->topRight.setPosition(destRect.x + destRect.z, destRect.y + uvRect.w);
+	newGlyph->topRight.setPosition(destRect.x + destRect.z, destRect.y + destRect.w);
 	newGlyph->topRight.setUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
 
 	_glyphs.push_back(newGlyph);

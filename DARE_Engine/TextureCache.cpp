@@ -20,11 +20,11 @@ OpenGLTexture TextureCache::getTexture(string texPath)
 
 		_textureMap.insert(make_pair(texPath, newTexture));//Inserts a new Texture along with its File Path into the cache
 
-		std::cout << "\n Used Cached Texture";
+		//std::cout << "\n Used Cached Texture";
 
 		return newTexture;
 	}
-	std::cout << "\n Loaded Texture";
+	//std::cout << "\n Loaded Texture";
 
 	return mit->second;
 

@@ -98,6 +98,9 @@ void game::process_input()
 			while (SDL_WaitEvent(&evnt) && evnt.button.type != SDL_MOUSEBUTTONUP)
 			{
 				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
+				glm::vec2 new_pos= _camera.getPosition();
+
+				cout << "\n Position of Camera" << glm::to_string(new_pos);
 				_camera.update();
 				drawGame();
 			}
@@ -105,12 +108,18 @@ void game::process_input()
 		if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y > 0)
 		{
 			_camera.setScale(_camera.getScale() + scaleSpeed);
+			glm::vec2 new_pos = _camera.getPosition();
+
+			cout << "\n Position of Camera" << glm::to_string(new_pos);
 			_camera.update();
 			drawGame();
 		}
 		else if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y < 0)
 		{
 			_camera.setScale(_camera.getScale() - scaleSpeed);
+			glm::vec2 new_pos = _camera.getPosition();
+
+			cout << "\n Position of Camera" << glm::to_string(new_pos);
 			_camera.update();
 			drawGame();
 		}
@@ -122,11 +131,11 @@ void game::initsystems()
 
 	init();
 
-	_window.createWindow("DARE v0.1", 0);
+	
 
-	//_window.createWindow("DARE v0.1", 1366, 768, 0);
+	_window.createWindow("DARE v0.1", 1366, 768, 0);
 
-	_camera.init(_window.width, _window.height);
+	//_camera.init(_window.width, _window.height);
 
 	initShaders();
 
@@ -156,7 +165,9 @@ void game::drawGame()
 
 	glm::vec4 pos(0.0f, 0.0f, 50.0f, 50.0f);
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
-	OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
+	//OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
+
+	OpenGLTexture texture = ResourceManager::getTexture("Textures/CharacterRight_Walk1.png");
 
 	Color color;
 	color.r = 255;
