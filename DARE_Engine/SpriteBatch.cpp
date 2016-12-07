@@ -73,13 +73,38 @@ void SpriteBatch::begin(GlyphSortType sortType)
 
 void SpriteBatch::end()
 {
-	//sortGlyph();
+	sortGlyph();
 }
 
+bool SpriteBatch::compareFrontToBack(Glyph* a, Glyph* b)
+{
+	return(a->depth < b->depth);
+}
+
+bool SpriteBatch::compareBacktoFront(Glyph* a, Glyph* b)
+{
+	return(a->depth > b->depth);
+}
+
+bool SpriteBatch::compareTexture(Glyph* a, Glyph* b)
+{
+	return(a->texture < b->texture);
+}
 void SpriteBatch::sortGlyph()
 {
+	switch (_sortType)
+	{
+	case GlyphSortType::BACK_TO_FRONT:
+		std::stable_sort(_glyphs.begin(), _glyphs.end(), compareBacktoFront); //Depth defines the sort order
+		break;
+	case GlyphSortType::FRONT_TO_BACK:
+		std::stable_sort(_glyphs.begin(), _glyphs.end(), compareFrontToBack);
+		break;
+	case GlyphSortType::TEXTURE:
+		std::stable_sort(_glyphs.begin(), _glyphs.end(), compareTexture);
+		break;
+	}
 	
-	//std::stable_sort();
 }
 
 void SpriteBatch::renderBatch()
@@ -88,9 +113,11 @@ void SpriteBatch::renderBatch()
 }
 SpriteBatch::SpriteBatch() :_vbo(0), _vao(0)
 {
+
 }
 
 
 SpriteBatch::~SpriteBatch()
 {
+
 }

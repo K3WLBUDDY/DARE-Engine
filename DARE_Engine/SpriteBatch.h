@@ -18,6 +18,11 @@ namespace DARE_Engine
 		vertex bottomRight;
 	};
 
+	class renderBatch
+	{
+
+	};
+
 	class SpriteBatch // Each Texture has its own batch. 
 	{
 	public:
@@ -31,9 +36,15 @@ namespace DARE_Engine
 		void init();
 
 
+
+
 	private:
 		void createVertexArray(); //Creates a Vertex Array Object fo storing states of the Sprites and takes care of the various buffers
 		void sortGlyph(); //Sorts the Order of the Glyphs based on the 
+
+		static bool compareFrontToBack(Glyph* a, Glyph* b);
+		static bool compareBacktoFront(Glyph* a, Glyph* b);
+		static bool compareTexture(Glyph* a, Glyph* b);
 
 		GlyphSortType _sortType;
 
