@@ -20,7 +20,15 @@ namespace DARE_Engine
 
 	class renderBatch
 	{
+	public:
 
+		renderBatch(GLuint Offset, GLuint NumVertices, GLuint Textures) : offset(Offset), numVertices(NumVertices), texture(Textures)
+		{
+
+		}
+		GLuint offset;
+		GLuint numVertices;
+		GLuint texture;
 	};
 
 	class SpriteBatch // Each Texture has its own batch. 
@@ -42,6 +50,8 @@ namespace DARE_Engine
 		void createVertexArray(); //Creates a Vertex Array Object fo storing states of the Sprites and takes care of the various buffers
 		void sortGlyph(); //Sorts the Order of the Glyphs based on the 
 
+		void createRenderBatches();
+
 		static bool compareFrontToBack(Glyph* a, Glyph* b);
 		static bool compareBacktoFront(Glyph* a, Glyph* b);
 		static bool compareTexture(Glyph* a, Glyph* b);
@@ -52,6 +62,7 @@ namespace DARE_Engine
 		GLuint _vao; // Holds the state information for draw calls
 
 		std::vector<Glyph*> _glyphs;
+		std::vector<DARE_Engine::renderBatch> _renderBatches;
 
 	};
 }

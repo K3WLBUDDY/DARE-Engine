@@ -35,6 +35,57 @@ void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuin
 
 }
 
+void SpriteBatch::createRenderBatches()
+{
+	std::vector <vertex> vertices;
+	//vertices.reserve(_glyphs.size() * 6);
+	vertices.resize(_glyphs.size() * 6);
+
+	if (_glyphs.empty())
+		return;
+
+	int offset = 0; 
+	int cv = 0;
+	//DARE_Engine::renderBatch myBatch(0, 6, _glyphs[0]->texture);
+	_renderBatches.emplace_back(offset, 6, _glyphs[0]->texture);
+	vertices[cv++] = _glyphs[0]->topLeft;
+	vertices[cv++] = _glyphs[0]->bottomLeft;
+	vertices[cv++] = _glyphs[0]->bottomRight;
+	vertices[cv++] = _glyphs[0]->bottomRight;
+	vertices[cv++] = _glyphs[0]->topRight;
+	vertices[cv++] = _glyphs[0]->topLeft;
+
+	offset += 6;
+	for (int cg = 1; cg < _glyphs.size(); cg++)
+	{
+		if (_glyphs[cg]->texture != _glyphs[cg - 1]->texture)
+			_renderBatches.emplace_back(offset, 6, _glyphs[cg]->texture);
+		else
+			_renderBatches.back().numVertices += 6;
+
+		vertices[cv++] = _glyphs[cg]->topLeft;
+		vertices[cv++] = _glyphs[cg]->bottomLeft;
+		vertices[cv++] = _glyphs[cg]->bottomRight;
+		vertices[cv++] = _glyphs[cg]->bottomRight;
+		vertices[cv++] = _glyphs[cg]->topRight;
+		vertices[cv++] = _glyphs[cg]->topLeft;
+		offset += 6;
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	//glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(vertex), vertices.data(), GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(vertex), vertices.data(), GL_DYNAMIC_DRAW);//GL_STREAM_DRAW
+
+	//Orphoning the Buffer
+	glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(vertex), nullptr, GL_DYNAMIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size()*sizeof(vertex), vertices.data());
+
+	glBindBuffer(GL_ARRAY_BUFFER,0);
+	
+
+		
+}
+
 void SpriteBatch::createVertexArray()
 {
 
@@ -69,11 +120,15 @@ void SpriteBatch::init()
 void SpriteBatch::begin(GlyphSortType sortType)
 {
 	_sortType = sortType;
+	_renderBatches.clear();
+	_glyphs.clear();
+
 }
 
 void SpriteBatch::end()
 {
 	sortGlyph();
+	createRenderBatches();
 }
 
 bool SpriteBatch::compareFrontToBack(Glyph* a, Glyph* b)
@@ -109,7 +164,12 @@ void SpriteBatch::sortGlyph()
 
 void SpriteBatch::renderBatch()
 {
+	for (int i = 0; i < _renderBatches.size(); i++)
+	{
+		glBindTexture(GL_TEXTURE_2D, _renderBatches[i].texture);
 
+		glDrawArrays(GL_TRIANGLES, _renderBatches[i].offset, _renderBatches[i].numVertices);
+	}
 }
 SpriteBatch::SpriteBatch() :_vbo(0), _vao(0)
 {

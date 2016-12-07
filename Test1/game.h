@@ -7,6 +7,7 @@
 #include<DARE_Engine/Window.h>
 #include<DARE_Engine/errors.h>
 #include<DARE_Engine/Camera2D.h>
+#include<DARE_Engine\SpriteBatch.h>
 #include<glm/gtx/string_cast.hpp>
 #include<vector>
 #include<DARE_Engine\DARE_Engine.h>
@@ -48,12 +49,13 @@ private:
 	void fpsCounter();
 
 	float time;
+	SpriteBatch _spriteBatch;
 
 	GLSLProgram _colorProgram;
 	
 	OpenGLTexture _ChangeTexture;
 
-	std::vector<sprite*> _sprites;
+	//std::vector<sprite*> _sprites;
 
 	Camera2D _camera;
 

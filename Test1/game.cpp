@@ -14,10 +14,14 @@ void game::run()
 {
 	start = 1;
 	initsystems();
+
+	/*
 	_sprites.push_back(new sprite());//Adds a new Sprite at the end of the vector.Pop back deletes the last element and insert can insert an element at any position
 	_sprites.back()->init(0.0f, 0.0f, _window.width / 2, _window.width / 2, "Textures/DAREv0.1_logo.png");//back()->Init is the same as (back()*).init. Initializes the new sprite.back() returns the address of the last element.
 	_sprites.push_back(new sprite());
 	_sprites.back()->init(_window.width / 2, 0.0f, _window.width / 2, _window.width / 2, "Textures/DAREv0.1_logo.png");
+	*/
+
 
 	while (games != gamestate::STOP)
 	{
@@ -126,6 +130,8 @@ void game::initsystems()
 
 	initShaders();
 
+	_spriteBatch.init();
+
 	
 }
 
@@ -148,12 +154,27 @@ void game::drawGame()
 
 	glUniformMatrix4fv(PLocation, 1, GL_FALSE, &(cameraMatrix[0][0])); // glUniformMatrix4fv(Location, count, Transpose Matrix (GL_TRUE, GL_FALSE), value);
 
+	glm::vec4 pos(0.0f, 0.0f, 50.0f, 50.0f);
+	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
+	//OpenGLTexture texture = ResourceManager::getTexture()
 
+
+
+	//_spriteBatch.begin();
+	_spriteBatch.draw(pos,uv,);
+
+	_spriteBatch.end();
+	_spriteBatch.renderBatch();
+
+	/*
 	for (int i = 0; i < _sprites.size(); i++)
 	{
 		_sprites[i]->draw();
 	//	_sprites.back()->init(-1.0f, 0.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
 	}
+	*/
+
+
 	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
