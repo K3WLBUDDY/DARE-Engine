@@ -156,12 +156,16 @@ void game::drawGame()
 
 	glm::vec4 pos(0.0f, 0.0f, 50.0f, 50.0f);
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
-	//OpenGLTexture texture = ResourceManager::getTexture()
+	OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
 
+	Color color;
+	color.r = 255;
+	color.g = 255;
+	color.b = 255;
+	color.a = 255;
 
-
-	//_spriteBatch.begin();
-	_spriteBatch.draw(pos,uv,);
+	_spriteBatch.begin();
+	_spriteBatch.draw(pos,uv, texture.ID, 0.0f, color);
 
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();

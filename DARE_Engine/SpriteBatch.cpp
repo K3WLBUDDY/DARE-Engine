@@ -3,7 +3,7 @@
 
 using namespace DARE_Engine;
 
-enum class GlyphSortType{NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE}; //For sorting the Glyphs
+ //For sorting the Glyphs
 
 void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color)
 {
@@ -164,12 +164,15 @@ void SpriteBatch::sortGlyph()
 
 void SpriteBatch::renderBatch()
 {
+	glBindVertexArray(_vao);
 	for (int i = 0; i < _renderBatches.size(); i++)
 	{
 		glBindTexture(GL_TEXTURE_2D, _renderBatches[i].texture);
 
 		glDrawArrays(GL_TRIANGLES, _renderBatches[i].offset, _renderBatches[i].numVertices);
 	}
+
+	glBindVertexArray(0);
 }
 SpriteBatch::SpriteBatch() :_vbo(0), _vao(0)
 {

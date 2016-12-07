@@ -4,6 +4,8 @@
 #include"vertex.h"
 #pragma once
 
+
+enum class GlyphSortType{ NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE };
 namespace DARE_Engine
 {
 
