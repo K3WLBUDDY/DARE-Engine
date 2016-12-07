@@ -133,9 +133,11 @@ void game::initsystems()
 
 	
 
-	_window.createWindow("DARE v0.1", 1366, 768, 0);
+	//_window.createWindow("DARE v0.1", 1366, 768, 0);
 
-	//_camera.init(_window.width, _window.height);
+	_window.createWindow("DARE v0.1", 0);
+
+	_camera.init(_window.width, _window.height);
 
 	initShaders();
 
@@ -179,7 +181,7 @@ void game::drawGame()
 
 	
 	_spriteBatch.draw(pos,uv, texture.ID, 0.0f, color);
-	//_spriteBatch.draw(pos+glm::vec4(50,0,0,0), uv, texture.ID, 0.0f, color);
+	_spriteBatch.draw(pos+glm::vec4(50,0,0,0), uv, texture.ID, 0.0f, color);
 
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();
