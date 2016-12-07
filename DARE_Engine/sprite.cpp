@@ -70,14 +70,7 @@ void sprite::draw()
 	glBindTexture(GL_TEXTURE_2D, _texture.ID);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 
-	
-
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);//Unbinds the Data.
 

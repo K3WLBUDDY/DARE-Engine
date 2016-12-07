@@ -5,9 +5,11 @@
 #pragma once
 
 
-enum class GlyphSortType{ NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE };
+
 namespace DARE_Engine
 {
+
+	enum class GlyphSortType{ NONE, FRONT_TO_BACK, BACK_TO_FRONT, TEXTURE };
 
 	struct Glyph // Structure for Single sprite. Holds the type of texture and depth. Depth is for layering sprites on top of each other
 	{

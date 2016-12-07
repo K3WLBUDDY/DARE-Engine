@@ -117,9 +117,9 @@ void game::process_input()
 		else if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y < 0)
 		{
 			_camera.setScale(_camera.getScale() - scaleSpeed);
-			glm::vec2 new_pos = _camera.getPosition();
+			glm::vec2 new_pos= _camera.getPosition();
 
-			cout << "\n Position of Camera" << glm::to_string(new_pos);
+				cout << "\n Position of Camera" << glm::to_string(new_pos);
 			_camera.update();
 			drawGame();
 		}
@@ -162,12 +162,14 @@ void game::drawGame()
 	glm::mat4 cameraMatrix = _camera.getCameraMatrix();
 
 	glUniformMatrix4fv(PLocation, 1, GL_FALSE, &(cameraMatrix[0][0])); // glUniformMatrix4fv(Location, count, Transpose Matrix (GL_TRUE, GL_FALSE), value);
-
+	
+	_spriteBatch.begin();
+	
 	glm::vec4 pos(0.0f, 0.0f, 50.0f, 50.0f);
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
 	//OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
 
-	OpenGLTexture texture = ResourceManager::getTexture("Textures/CharacterRight_Walk1.png");
+	OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
 
 	Color color;
 	color.r = 255;
@@ -175,8 +177,9 @@ void game::drawGame()
 	color.b = 255;
 	color.a = 255;
 
-	_spriteBatch.begin();
+	
 	_spriteBatch.draw(pos,uv, texture.ID, 0.0f, color);
+	//_spriteBatch.draw(pos+glm::vec4(50,0,0,0), uv, texture.ID, 0.0f, color);
 
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();
