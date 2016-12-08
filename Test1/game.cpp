@@ -39,7 +39,7 @@ void game::run()
 
 		if (framecount == 10)
 		{
-			//cout << "\n\t\t FPS: " << _fps << endl;
+			cout << "\n\t\t FPS: " << _fps << endl;
 			framecount = 0;
 		}
 
@@ -56,7 +56,7 @@ void game::process_input()
 {
 	SDL_Event evnt;
 
-	float cameraSpeed = 2.0f;
+	float cameraSpeed = 20;
 	float scaleSpeed = 0.1f;
 
 	while (SDL_PollEvent(&evnt))
@@ -102,9 +102,6 @@ void game::process_input()
 			while (SDL_WaitEvent(&evnt) && evnt.button.type != SDL_MOUSEBUTTONUP)
 			{
 				_camera.setPosition(glm::vec2((float)evnt.motion.x, (float)evnt.motion.y));
-				glm::vec2 new_pos= _camera.getPosition();
-
-				cout << "\n Position of Camera" << glm::to_string(new_pos);
 				_camera.update();
 				drawGame();
 			}
@@ -112,39 +109,36 @@ void game::process_input()
 		if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y > 0)
 		{
 			_camera.setScale(_camera.getScale() + scaleSpeed);
-			glm::vec2 new_pos = _camera.getPosition();
-
-			cout << "\n Position of Camera" << glm::to_string(new_pos);
 			_camera.update();
 			drawGame();
 		}
 		else if (evnt.wheel.type == SDL_MOUSEWHEEL && evnt.wheel.y < 0)
 		{
 			_camera.setScale(_camera.getScale() - scaleSpeed);
-			glm::vec2 new_pos= _camera.getPosition();
-
-				cout << "\n Position of Camera" << glm::to_string(new_pos);
 			_camera.update();
 			drawGame();
 		}
-	}
-	if(_inputManager.isKeyPressed(SDLK_w))
-		_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, -cameraSpeed));
+
 		
+	}
+	if (_inputManager.isKeyPressed(SDLK_w))
+		_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, -cameraSpeed));
+
 	if (_inputManager.isKeyPressed(SDLK_s))
 		_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, cameraSpeed));
-		
+
 	if (_inputManager.isKeyPressed(SDLK_a))
 		_camera.setPosition(_camera.getPosition() - glm::vec2(cameraSpeed, 0.0));
-		
-	if(_inputManager.isKeyPressed(SDLK_d))
+
+	if (_inputManager.isKeyPressed(SDLK_d))
 		_camera.setPosition(_camera.getPosition() + glm::vec2(cameraSpeed, 0.0));
-		
-	if(_inputManager.isKeyPressed(SDLK_q))
+
+	if (_inputManager.isKeyPressed(SDLK_q))
 		_camera.setScale(_camera.getScale() + scaleSpeed);
-		
+
 	if (_inputManager.isKeyPressed(SDLK_e))
 		_camera.setScale(_camera.getScale() - scaleSpeed);
+	
 		
 }
 
