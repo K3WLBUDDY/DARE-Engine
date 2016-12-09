@@ -25,14 +25,17 @@ void game::run()
 
 	while (games != gamestate::STOP)
 	{
-		float startTick = SDL_GetTicks();
+
+		_FPSLimiter.beginFrame();
+
 		process_input();
 		time += 0.01f; 
 
 
 		_camera.update();
 		drawGame();
-		fpsCounter();
+		
+		_fps = _FPSLimiter.end();
 
 		static int framecount = 0;
 		framecount++;
@@ -43,12 +46,7 @@ void game::run()
 			framecount = 0;
 		}
 
-		float frameTick = SDL_GetTicks() - startTick;
-
-		if (1000.0f / _maxFPS > frameTick)
-		{
-			SDL_Delay(1000.0f / _maxFPS - frameTick);
-		}
+		
 	}
 }
 
@@ -124,13 +122,17 @@ void game::initsystems()
 
 	init();
 
-	_window.createWindow("DARE v0.1", 0);
+	//_window.createWindow("DARE v0.1", 0);
+
+	_window.createWindow("DARE v0.1", 1366, 768, 0);
 
 	_camera.init(_window.width, _window.height);
 
 	initShaders();
 
 	_spriteBatch.init();
+
+	_FPSLimiter.init(_maxFPS);
 	
 }
 
@@ -189,44 +191,6 @@ void game::initShaders()
 	_colorProgram.linkShaders();
 	
 }
-
-void game::fpsCounter()
-{
-	static const int num_Samples = 10;//To Average the Frame times over 10 frames.Using static since values must be retained whenever the frame is drawm.
-	static float frameTimes[num_Samples];
-	static int currentFrame = 0;
-	static float previousTicks = SDL_GetTicks();
-	float currentTicks;
-	
-	currentTicks = SDL_GetTicks(); //Gets the current ms since SDL was initialized
-
-	_frameTime = currentTicks - previousTicks;
-	frameTimes[currentFrame%num_Samples] = _frameTime;//Implementing Circular Buffer.
-	previousTicks = currentTicks;
-
-	int count;
-	currentFrame++;
-
-	if (currentFrame < num_Samples)
-		count = currentFrame;
-
-	else
-		count = num_Samples;
-
-	float frameTimeAverage = 0;
-
-	for (int i = 0; i < count; i++)
-		frameTimeAverage += frameTimes[i];
-
-	frameTimeAverage /= count;
-
-	if (frameTimeAverage>0)
-		_fps = 1000.0f / frameTimeAverage;
-	else
-		_fps = 60.0f;
-	
-}
-
 
 game::~game()
 {

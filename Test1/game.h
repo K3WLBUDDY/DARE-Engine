@@ -9,6 +9,7 @@
 #include<DARE_Engine/Camera2D.h>
 #include<DARE_Engine/InputManager.h>
 #include<DARE_Engine/SpriteBatch.h>
+#include<DARE_Engine/Timing.h>
 #include<glm/gtx/string_cast.hpp>
 #include<vector>
 #include<DARE_Engine/DARE_Engine.h>
@@ -59,9 +60,10 @@ private:
 
 	Camera2D _camera;
 
-	float _fps, _frameTime, _maxFPS;
+	FpsLimiter _FPSLimiter;
 
-	void fpsCounter();
+
+	float _fps, _maxFPS;
 
 	float time;
 };
