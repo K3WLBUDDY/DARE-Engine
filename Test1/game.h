@@ -8,10 +8,10 @@
 #include<DARE_Engine/errors.h>
 #include<DARE_Engine/Camera2D.h>
 #include<DARE_Engine/InputManager.h>
-#include<DARE_Engine\SpriteBatch.h>
+#include<DARE_Engine/SpriteBatch.h>
 #include<glm/gtx/string_cast.hpp>
 #include<vector>
-#include<DARE_Engine\DARE_Engine.h>
+#include<DARE_Engine/DARE_Engine.h>
 #include<iostream>
 #include<string>
 
@@ -22,6 +22,8 @@ enum class gamestate {PLAY,STOP};
 class game
 {
 public:
+	
+	gamestate games;
 
 	int start;
 
@@ -39,7 +41,7 @@ public:
 
 	~game();
 
-	gamestate games;
+	
 
 private:
 
@@ -49,19 +51,18 @@ private:
 
 	sprite _sprite;
 
-	void fpsCounter();
-
-	float time;
 	SpriteBatch _spriteBatch;
 
 	GLSLProgram _colorProgram;
 	
 	OpenGLTexture _ChangeTexture;
 
-	//std::vector<sprite*> _sprites;
-
 	Camera2D _camera;
 
 	float _fps, _frameTime, _maxFPS;
+
+	void fpsCounter();
+
+	float time;
 };
 

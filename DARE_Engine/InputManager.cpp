@@ -15,13 +15,13 @@ void InputManager::releaseKey(unsigned int keyID)
 
 bool InputManager::isKeyPressed(unsigned int keyID)
 {
-	//return _keyMap[keyID]; Associative Array - Creates a default variable here. Not Advised as it may assuem values for the varaible.
+	//return _keyMap[keyID]; Associative Array - Creates a default variable here. Not Advised as it may assume values for the varaible.
 
 	auto it = _keyMap.find(keyID);
 	if (it != _keyMap.end())
 		return it->second;
 	else
-		false;
+		return false;
 }
 
 

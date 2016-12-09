@@ -61,40 +61,17 @@ void game::process_input()
 
 	while (SDL_PollEvent(&evnt))
 	{
+
 		switch (evnt.type)
 		{
 		case SDL_QUIT:
-
 			games = gamestate::STOP;
 			break;
 		case SDL_KEYDOWN:
 			_inputManager.pressKey(evnt.key.keysym.sym);
-			/*
-			switch (evnt.key.keysym.sym)
-			{
-			case SDLK_w:
-				_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, -cameraSpeed));
-				break;
-			case SDLK_s:
-				_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, cameraSpeed));
-				break;
-			case SDLK_a:
-				_camera.setPosition(_camera.getPosition() - glm::vec2(cameraSpeed, 0.0));
-				break;
-			case SDLK_d:
-				_camera.setPosition(_camera.getPosition() + glm::vec2(cameraSpeed, 0.0));
-				break;
-			case SDLK_q:
-				_camera.setScale(_camera.getScale() + scaleSpeed);
-				break;
-			case SDLK_e:
-				_camera.setScale(_camera.getScale() - scaleSpeed);
-				break;
-			}
-			*/
+			break;
 		case SDL_KEYUP:
 			_inputManager.releaseKey(evnt.key.keysym.sym);
-
 		}
 		
 		if (evnt.button.type == SDL_MOUSEBUTTONDOWN && evnt.button.button == SDL_BUTTON_LEFT) // Mouse Motion for translating the Sprite when the left mouse button is clicked.
@@ -121,6 +98,7 @@ void game::process_input()
 
 		
 	}
+
 	if (_inputManager.isKeyPressed(SDLK_w))
 		_camera.setPosition(_camera.getPosition() + glm::vec2(0.0, -cameraSpeed));
 
@@ -138,18 +116,13 @@ void game::process_input()
 
 	if (_inputManager.isKeyPressed(SDLK_e))
 		_camera.setScale(_camera.getScale() - scaleSpeed);
-	
-		
+
 }
 
 void game::initsystems()
 {
 
 	init();
-
-	
-
-	//_window.createWindow("DARE v0.1", 1366, 768, 0);
 
 	_window.createWindow("DARE v0.1", 0);
 
@@ -158,7 +131,6 @@ void game::initsystems()
 	initShaders();
 
 	_spriteBatch.init();
-
 	
 }
 
@@ -173,20 +145,19 @@ void game::drawGame()
 
 	GLint textureLocation = _colorProgram.getUniformLocation("mySampler"); //Gets the location of the Texture Variable present in the Shader
 	glUniform1i(textureLocation,0);
+
 	GLuint timeLocation = _colorProgram.getUniformLocation("time"); //Gets the Location of the Time Variable 
 	glUniform1f(timeLocation, time); //Sends the  Value of the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
 
 	GLuint PLocation = _colorProgram.getUniformLocation("P");
 	glm::mat4 cameraMatrix = _camera.getCameraMatrix();
-
 	glUniformMatrix4fv(PLocation, 1, GL_FALSE, &(cameraMatrix[0][0])); // glUniformMatrix4fv(Location, count, Transpose Matrix (GL_TRUE, GL_FALSE), value);
 	
 	_spriteBatch.begin();
 	
 	glm::vec4 pos(0.0f, 0.0f, _window.width / 2, _window.width / 2);
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
-	//OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
-
+	
 	OpenGLTexture texture = ResourceManager::getTexture("Textures/DAREv0.1_logo.png");
 
 	Color color;
@@ -195,45 +166,27 @@ void game::drawGame()
 	color.b = 255;
 	color.a = 255;
 
-	
 	_spriteBatch.draw(pos,uv, texture.ID, 0.0f, color);
 	_spriteBatch.draw(pos+glm::vec4(_window.width/2,0,0,0), uv, texture.ID, 0.0f, color);
 
 	_spriteBatch.end();
 	_spriteBatch.renderBatch();
 
-	/*
-	for (int i = 0; i < _sprites.size(); i++)
-	{
-		_sprites[i]->draw();
-	//	_sprites.back()->init(-1.0f, 0.0f, 1.0f, 1.0f, "Textures/JimmyJump/PNG/CharacterRight_Standing.png");
-	}
-	*/
-
-
-	
 	glBindTexture(GL_TEXTURE_2D, 0); //Unbinds the Texture
 	_colorProgram.unuse();
 	
-
-	
-
-	
 	_window.swapBuffer();//Swaps between the two buffers in the DoubleBuffer window
-	
-	
+		
 }
 
 void game::initShaders()
 {
-	
+
 	_colorProgram.compileShaders("Shaders/colorShading.vert.txt", "Shaders/colorShading.frag.txt");//Calls the CompileShaders function in GLSLProgram Class
 	_colorProgram.addAttribute("vertexPosition"); //Binds the vertexPosition Attribute from the Vertex Shader
 	_colorProgram.addAttribute("vertexColor"); //Binds the vertexColor attribute from the Vertex Shader
 	_colorProgram.addAttribute("vertexUV");
 	_colorProgram.linkShaders();
-
-
 	
 }
 
@@ -242,7 +195,6 @@ void game::fpsCounter()
 	static const int num_Samples = 10;//To Average the Frame times over 10 frames.Using static since values must be retained whenever the frame is drawm.
 	static float frameTimes[num_Samples];
 	static int currentFrame = 0;
-	
 	static float previousTicks = SDL_GetTicks();
 	float currentTicks;
 	
@@ -250,7 +202,6 @@ void game::fpsCounter()
 
 	_frameTime = currentTicks - previousTicks;
 	frameTimes[currentFrame%num_Samples] = _frameTime;//Implementing Circular Buffer.
-
 	previousTicks = currentTicks;
 
 	int count;
@@ -258,9 +209,12 @@ void game::fpsCounter()
 
 	if (currentFrame < num_Samples)
 		count = currentFrame;
+
 	else
 		count = num_Samples;
+
 	float frameTimeAverage = 0;
+
 	for (int i = 0; i < count; i++)
 		frameTimeAverage += frameTimes[i];
 
@@ -271,7 +225,6 @@ void game::fpsCounter()
 	else
 		_fps = 60.0f;
 	
-
 }
 
 

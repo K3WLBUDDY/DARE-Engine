@@ -5,6 +5,7 @@ namespace DARE_Engine
 	class InputManager
 	{
 	public:
+
 		InputManager();
 		~InputManager();
 
