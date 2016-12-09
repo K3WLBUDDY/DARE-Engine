@@ -65,8 +65,7 @@ float FpsLimiter::end()
 
 	float frameTick = SDL_GetTicks() - _startTicks;
 
-	if (1000.0f / _maxFPS > frameTick)
-		SDL_Delay(1000.0f / _maxFPS - frameTick);
-
+	if (1000.0f / _FPSTarget > frameTick)
+		SDL_Delay(1000.0f / _FPSTarget - frameTick);
 	return _fps;
 }
