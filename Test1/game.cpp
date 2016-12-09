@@ -122,9 +122,9 @@ void game::initsystems()
 
 	init();
 
-	//_window.createWindow("DARE v0.1", 0);
+	_window.createWindow("DARE v0.1", 0);
 
-	_window.createWindow("DARE v0.1", 1366, 768, 0);
+	//_window.createWindow("DARE v0.1", 1366, 768, 0);
 
 	_camera.init(_window.width, _window.height);
 
@@ -148,8 +148,10 @@ void game::drawGame()
 	GLint textureLocation = _colorProgram.getUniformLocation("mySampler"); //Gets the location of the Texture Variable present in the Shader
 	glUniform1i(textureLocation,0);
 
+	/*
 	GLuint timeLocation = _colorProgram.getUniformLocation("time"); //Gets the Location of the Time Variable 
 	glUniform1f(timeLocation, time); //Sends the  Value of the Variable to the GPU so that it can be used by the GPU whereever the variable time appears in the shaders
+	*/
 
 	GLuint PLocation = _colorProgram.getUniformLocation("P");
 	glm::mat4 cameraMatrix = _camera.getCameraMatrix();

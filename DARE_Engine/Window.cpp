@@ -114,6 +114,9 @@ int Window::createWindow(std::string windowName, int windowWidth, int widnowHeig
 
 	SDL_GL_SetSwapInterval(1);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //Source and Destination Factor. Soruce multiplies images the colours alpha factor. Destinaton refers to the background behind the alpha layer.
+
 	return 0;
 }
 

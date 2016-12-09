@@ -8,8 +8,6 @@ in vec2 fragmentPosition;
 in vec4 fragmentColor;
 in vec2 fragmentUV;
 
-uniform float time; // A Uniform Variable.
-
 /* When a Uniform variable is not being used,
  it is automatically deleted by the GLSL compiler
  */
@@ -21,10 +19,10 @@ void main()
 
     vec4 textureColor= texture(mySampler, fragmentUV);
 
-    //color=fragmentColor*textureColor;
-    color=vec4(fragmentColor.r * (cos(fragmentPosition.x * 4.0 + time) + 1.0) * 0.5,
-                 fragmentColor.g * (cos(fragmentPosition.y * 4.0 + time) + 1.0) * 0.5,
-                 fragmentColor.b * (cos(fragmentPosition.x * 1.0 + time) + 1.0) * 0.5, fragmentColor.a)*textureColor;
+    color=fragmentColor*textureColor;
+    //color=vec4(fragmentColor.r * (cos(fragmentPosition.x * 4.0 + time) + 1.0) * 0.5,
+    //             fragmentColor.g * (cos(fragmentPosition.y * 4.0 + time) + 1.0) * 0.5,
+    //             fragmentColor.b * (cos(fragmentPosition.x * 1.0 + time) + 1.0) * 0.5, fragmentColor.a)*textureColor;
      //color=textureColor*fragmentColor;
 }
 
