@@ -148,11 +148,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\IMGUI\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\..\..\IMGUI\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\..\..\IMGUI\imgui\imgui_draw.cpp" />
     <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="DARE_Engine.cpp" />
     <ClCompile Include="errors.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
+    <ClCompile Include="ImGui_SDL.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="Picopng.cpp" />
@@ -169,6 +173,7 @@
     <ClInclude Include="errors.h" />
     <ClInclude Include="GLSLProgram.h" />
     <ClInclude Include="ImageLoader.h" />
+    <ClInclude Include="ImGui_SDL.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="OpenGLTexture.h" />
